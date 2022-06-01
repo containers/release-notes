@@ -8,7 +8,7 @@
 # buildah release-1.26
 
 The release notes have been generated for the commit range
-[v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54](https://github.com/containers/buildah/compare/v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54) on Wed Jun  1 11:24:47 AM MDT 2022.
+[v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54](https://github.com/containers/buildah/compare/v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54) on Wed Jun  1 12:07:37 PM MDT 2022.
 
 # Changelog since v1.26.1
 
