@@ -1,0 +1,104 @@
+#!/bin/sh
+#
+# Generate release notes
+#
+ME=$(basename $0)
+
+set -ex
+
+# Command-line args: repo (podman/buildah/etc), branch tag [branch tag...]
+repo=${1?Missing REPO arg}
+shift
+
+# All subsequent args (at least one required) are branches
+if [[ -z "$2" ]]; then
+    echo "$ME: Missing DEST_BRANCH arg(s)" >&2
+    exit 1
+fi
+
+# Fetch and build the release-notes tool. This can take >30m on a slow network
+export GOPATH=$(pwd)/.go
+# FIXME: is there a more go-natural way to do this?
+go install k8s.io/release/cmd/release-notes@v0.13.0
+
+# Temporary directory in which to check out code tree & write template file
+workdir=$(mktemp --directory --tmpdir $ME.tmp.XXXXXXX)
+
+# Check out source tree
+repo_dir=$workdir/src/containers/$repo
+git clone https://github.com/containers/$repo $repo_dir
+
+# Iterate over all given arguments
+for dest_branch in "$@"; do
+    # Pivot to desired branch; compute branch point and most recent commit
+    git -C $repo_dir checkout $dest_branch
+
+    # Most recent tagged release
+    start_tag=$(git -C $repo_dir describe --tags --abbrev=0)
+    # Most recent commit on active branch
+    end_sha=$(git -C $repo_dir rev-parse $dest_branch)
+
+    # Custom template file
+    template=$workdir/template.txt
+    cat >| $template <<EOF
+# $repo $dest_branch
+
+The release notes have been generated for the commit range
+[${start_tag}...${end_sha}](https://github.com/containers/$repo/compare/${start_tag}...${end_sha}) on $(date).
+
+# Changelog since $start_tag
+
+{{with .NotesWithActionRequired -}}
+## Urgent Upgrade Notes
+
+{{range .}} {{println "-" .}} {{end}}
+{{end}}
+
+{{- if .Notes -}}
+## Changes by Kind
+{{ range .Notes}}
+### {{.Kind | prettyKind}}
+{{range \$note := .NoteEntries }}{{println " -" \$note}}{{end}}
+{{- end -}}
+{{- end -}}
+EOF
+
+    # Run the release-notes tool
+    mkdir -p $repo
+    outfile=$repo/$dest_branch.md
+    rm -f $outfile
+    ${GOPATH}/bin/release-notes --org=containers      \
+             --repo=$repo                             \
+             --branch=$dest_branch                    \
+             --repo-path=$repo_dir                    \
+             --required-author=                       \
+             --start-rev=$start_tag                   \
+             --end-sha=$end_sha                       \
+             --output=$outfile                        \
+             --toc                                    \
+             --markdown-links                         \
+             --go-template=go-template:$template
+
+    commit_message="Initial release notes: $repo $dest"
+
+    # Optimization: skip commit if only change is in timestamp
+    # (We can't skip running the release-notes tool, even if end-sha is
+    # the same, because it's possible for PR labels to have changed)
+    if git ls-files --error-unmatch $outfile &>/dev/null; then
+        commit_message="Update release notes: $repo $test"
+
+        if git diff --quiet -I"...$end_sha" $outfile; then
+            echo "$ME: $outfile is already up-to-date, skipping update"
+            git checkout $outfile
+            continue
+        fi
+    fi
+
+    # FIXME: check out a side branch instead, and commit on it?
+    chmod 444 $outfile
+    git add $outfile
+    git commit -s -m"$commit_message" $outfile
+done
+
+# Clean up
+rm -rf $workdir
