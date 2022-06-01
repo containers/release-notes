@@ -2,6 +2,7 @@
 - [Changelog since v4.0.0-rc2](#changelog-since-v400-rc2)
   - [Changes by Kind](#changes-by-kind)
     - [Feature](#feature)
+    - [Documentation](#documentation)
     - [Bug or Regression](#bug-or-regression)
     - [Uncategorized](#uncategorized)
   - [Dependencies](#dependencies)
@@ -12,7 +13,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88](https://github.com/containers/podman/compare/v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88) on Wed Jun  1 11:00:15 AM MDT 2022.
+[v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88](https://github.com/containers/podman/compare/v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88) on Wed Jun  1 12:58:25 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -27,16 +28,19 @@ The release notes have been generated for the commit range
   that socket using the Event type from the events package rendered in JSON. ([#14085](https://github.com/containers/podman/pull/14085), [@jwhonce](https://github.com/jwhonce))
  - Podman pod create --share now supports "+" prefix, allowing users to add to default namespaces ([#14333](https://github.com/containers/podman/pull/14333), [@rhatdan](https://github.com/rhatdan))
 
+### Documentation
+ - Add doc outlining the kube yaml fields supported by podman play kube ([#14318](https://github.com/containers/podman/pull/14318), [@umohnani8](https://github.com/umohnani8))
+ - Added a Windows tutorial ([#14141](https://github.com/containers/podman/pull/14141), [@n1hility](https://github.com/n1hility))
+
 ### Bug or Regression
  - Fix a bug where bind-mounting /dev in conjunction with using --init failed to start the container. ([#14281](https://github.com/containers/podman/pull/14281), [@vrothberg](https://github.com/vrothberg))
  - Fix a bug where the pause image of a Pod with a custom ID mapping could not be built (https://bugzilla.redhat.com/show_bug.cgi?id=2083997). ([#14232](https://github.com/containers/podman/pull/14232), [@vrothberg](https://github.com/vrothberg))
  - Fixed a bug where a dangling ID in the database could render Podman unusable. ([#14321](https://github.com/containers/podman/pull/14321), [@mheon](https://github.com/mheon))
  - Fixed a bug where removing a container with a zombie exec session would fail the first time, but succeed for subsequent calls ([#14252](https://github.com/containers/podman/issues/14252)). ([#14258](https://github.com/containers/podman/pull/14258), [@mheon](https://github.com/mheon))
+ - Fixes a bug in the parsing of --security-opt ([#14415](https://github.com/containers/podman/pull/14415), [@nicrowe00](https://github.com/nicrowe00))
  - Podman-remote no longer joins user NS ([#14010](https://github.com/containers/podman/pull/14010), [@vrothberg](https://github.com/vrothberg))
 
 ### Uncategorized
- - Add doc outlining the kube yaml fields supported by podman play kube ([#14318](https://github.com/containers/podman/pull/14318), [@umohnani8](https://github.com/umohnani8))
- - Added a Windows tutorial ([#14141](https://github.com/containers/podman/pull/14141), [@n1hility](https://github.com/n1hility))
  - Adds support for build which allows using build-cache with --squash-all using --layers
   - Adds support for new buildah feature --build-context where users can specify additional build context
   - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
@@ -48,7 +52,6 @@ The release notes have been generated for the commit range
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
  - Fixed a bug where podman container restore would fail if the container used --network none or ns:/path ([#14433](https://github.com/containers/podman/pull/14433), [@Luap99](https://github.com/Luap99))
- - Fixes a bug in the parsing of --security-opt ([#14415](https://github.com/containers/podman/pull/14415), [@nicrowe00](https://github.com/nicrowe00))
  - Fixes premature container termination on Windows when API forwarding is not running ([#14250](https://github.com/containers/podman/pull/14250), [@n1hility](https://github.com/n1hility))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
  - Implement --format flag for podman machine inspect. Example:
