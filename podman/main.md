@@ -1,4 +1,4 @@
-- [Podman main](#podman-main)
+- [podman main](#podman-main)
 - [Changelog since v4.0.0-rc2](#changelog-since-v400-rc2)
   - [Changes by Kind](#changes-by-kind)
     - [Feature](#feature)
@@ -9,10 +9,10 @@
     - [Changed](#changed)
     - [Removed](#removed)
 
-# Podman main
+# podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...819e5bcb943c6f604fdc65be1c0387055e0a9f20](https://github.com/containers/podman/compare/v4.0.0-rc2...819e5bcb943c6f604fdc65be1c0387055e0a9f20) on Wed May 25 12:56:36 PM MDT 2022.
+[v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88](https://github.com/containers/podman/compare/v4.0.0-rc2...f5389dbb44d8d83c3af08b3b183c8e7805c99d88) on Wed Jun  1 11:00:15 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -29,20 +29,26 @@ The release notes have been generated for the commit range
 
 ### Bug or Regression
  - Fix a bug where bind-mounting /dev in conjunction with using --init failed to start the container. ([#14281](https://github.com/containers/podman/pull/14281), [@vrothberg](https://github.com/vrothberg))
+ - Fix a bug where the pause image of a Pod with a custom ID mapping could not be built (https://bugzilla.redhat.com/show_bug.cgi?id=2083997). ([#14232](https://github.com/containers/podman/pull/14232), [@vrothberg](https://github.com/vrothberg))
+ - Fixed a bug where a dangling ID in the database could render Podman unusable. ([#14321](https://github.com/containers/podman/pull/14321), [@mheon](https://github.com/mheon))
  - Fixed a bug where removing a container with a zombie exec session would fail the first time, but succeed for subsequent calls ([#14252](https://github.com/containers/podman/issues/14252)). ([#14258](https://github.com/containers/podman/pull/14258), [@mheon](https://github.com/mheon))
  - Podman-remote no longer joins user NS ([#14010](https://github.com/containers/podman/pull/14010), [@vrothberg](https://github.com/vrothberg))
 
 ### Uncategorized
+ - Add doc outlining the kube yaml fields supported by podman play kube ([#14318](https://github.com/containers/podman/pull/14318), [@umohnani8](https://github.com/umohnani8))
  - Added a Windows tutorial ([#14141](https://github.com/containers/podman/pull/14141), [@n1hility](https://github.com/n1hility))
+ - Adds support for build which allows using build-cache with --squash-all using --layers
+  - Adds support for new buildah feature --build-context where users can specify additional build context
+  - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
  - Fix --sdnotify=conmon to sent the MAINPID once and not twice. ([#14215](https://github.com/containers/podman/pull/14215), [@vrothberg](https://github.com/vrothberg))
  - Fix a bug in the resolution of images in the Docker compat API when resolving short names for images that do not live on Docker Hub. ([#14294](https://github.com/containers/podman/pull/14294), [@vrothberg](https://github.com/vrothberg))
- - Fix a bug where the pause image of a Pod with a custom ID mapping could not be built (https://bugzilla.redhat.com/show_bug.cgi?id=2083997). ([#14232](https://github.com/containers/podman/pull/14232), [@vrothberg](https://github.com/vrothberg))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
- - Fixed a bug where a dangling ID in the database could render Podman unusable. ([#14321](https://github.com/containers/podman/pull/14321), [@mheon](https://github.com/mheon))
+ - Fixed a bug where podman container restore would fail if the container used --network none or ns:/path ([#14433](https://github.com/containers/podman/pull/14433), [@Luap99](https://github.com/Luap99))
+ - Fixes a bug in the parsing of --security-opt ([#14415](https://github.com/containers/podman/pull/14415), [@nicrowe00](https://github.com/nicrowe00))
  - Fixes premature container termination on Windows when API forwarding is not running ([#14250](https://github.com/containers/podman/pull/14250), [@n1hility](https://github.com/n1hility))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
  - Implement --format flag for podman machine inspect. Example:
@@ -58,6 +64,7 @@ The release notes have been generated for the commit range
  - Podman system reset now properly deletes all podman machines and associated files. ([#14066](https://github.com/containers/podman/pull/14066), [@ashley-cui](https://github.com/ashley-cui))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
+ - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
  - `podman auto-update` will now create an event. ([#14292](https://github.com/containers/podman/pull/14292), [@vrothberg](https://github.com/vrothberg))
 
 ## Dependencies
@@ -129,12 +136,12 @@ The release notes have been generated for the commit range
 - github.com/containerd/stargz-snapshotter/estargz: [v0.10.1 → v0.11.4](https://github.com/containerd/stargz-snapshotter/estargz/compare/v0.10.1...v0.11.4)
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.0](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.0)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
-- github.com/containers/buildah: [d744ebc → v1.26.1](https://github.com/containers/buildah/compare/d744ebc...v1.26.1)
+- github.com/containers/buildah: [d744ebc → 5500333](https://github.com/containers/buildah/compare/d744ebc...5500333)
 - github.com/containers/common: [0e7aca7 → 2fd37da](https://github.com/containers/common/compare/0e7aca7...2fd37da)
-- github.com/containers/image/v5: [v5.18.0 → 1e26896](https://github.com/containers/image/v5/compare/v5.18.0...1e26896)
+- github.com/containers/image/v5: [v5.18.0 → e594853](https://github.com/containers/image/v5/compare/v5.18.0...e594853)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
 - github.com/containers/ocicrypt: [v1.1.2 → 566b808](https://github.com/containers/ocicrypt/compare/v1.1.2...566b808)
-- github.com/containers/storage: [v1.38.0 → cacc332](https://github.com/containers/storage/compare/v1.38.0...cacc332)
+- github.com/containers/storage: [v1.38.0 → 5019cd5](https://github.com/containers/storage/compare/v1.38.0...5019cd5)
 - github.com/coreos/etcd: [v3.3.10+incompatible → v3.3.13+incompatible](https://github.com/coreos/etcd/compare/v3.3.10...v3.3.13)
 - github.com/docker/distribution: [v2.7.1+incompatible → v2.8.1+incompatible](https://github.com/docker/distribution/compare/v2.7.1...v2.8.1)
 - github.com/docker/docker: [v20.10.12+incompatible → v20.10.16+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.16)
@@ -216,6 +223,7 @@ The release notes have been generated for the commit range
 - google.golang.org/protobuf: v1.27.1 → v1.28.0
 - gopkg.in/check.v1: 8fa4692 → 10cb982
 - gopkg.in/ini.v1: v1.66.2 → v1.63.2
+- gopkg.in/yaml.v3: 496545a → v3.0.1
 - k8s.io/api: v0.22.4 → v0.22.5
 - k8s.io/apimachinery: v0.22.4 → v0.22.5
 - k8s.io/apiserver: v0.20.6 → v0.22.5
