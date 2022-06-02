@@ -79,13 +79,13 @@ EOF
              --markdown-links                         \
              --go-template=go-template:$template
 
-    commit_message="Initial release notes: $repo $dest"
+    commit_message="Initial release notes: $repo $dest_branch"
 
     # Optimization: skip commit if only change is in timestamp
     # (We can't skip running the release-notes tool, even if end-sha is
     # the same, because it's possible for PR labels to have changed)
     if git ls-files --error-unmatch $outfile &>/dev/null; then
-        commit_message="Update release notes: $repo $test"
+        commit_message="Update release notes: $repo $dest_branch"
 
         if git diff --quiet -I"...$end_sha" $outfile; then
             echo "$ME: $outfile is already up-to-date, skipping update"
