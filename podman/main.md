@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...e60c41657b47584d99a16e5ba5bac253063c2fb4](https://github.com/containers/podman/compare/v4.0.0-rc2...e60c41657b47584d99a16e5ba5bac253063c2fb4) on Thu Jun  2 05:24:41 AM MDT 2022.
+[v4.0.0-rc2...2777ecd53ea5c5c6f43713692436d1ecc0e861d5](https://github.com/containers/podman/compare/v4.0.0-rc2...2777ecd53ea5c5c6f43713692436d1ecc0e861d5) on Thu Jun  2 12:49:22 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -30,7 +30,9 @@ The release notes have been generated for the commit range
  - If developer provides a unix domain socket whose name matches machine_events.*\.sock in  XDG_RUNTIME_DIR/podman
   or by setting the environment variable PODMAN_MACHINE_EVENTS_SOCK, then podman machine will publish events to
   that socket using the Event type from the events package rendered in JSON. ([#14085](https://github.com/containers/podman/pull/14085), [@jwhonce](https://github.com/jwhonce))
+ - Podman create/run/cp can now autocomplete paths in the image/container via the shell completion ([#14457](https://github.com/containers/podman/pull/14457), [@Luap99](https://github.com/Luap99))
  - Podman pod create --share now supports "+" prefix, allowing users to add to default namespaces ([#14333](https://github.com/containers/podman/pull/14333), [@rhatdan](https://github.com/rhatdan))
+ - Podman pod create now accepts a name argument. ([#14334](https://github.com/containers/podman/pull/14334), [@rhatdan](https://github.com/rhatdan))
 
 ### Documentation
  - Add doc outlining the kube yaml fields supported by podman play kube ([#14318](https://github.com/containers/podman/pull/14318), [@umohnani8](https://github.com/umohnani8))
@@ -46,7 +48,11 @@ The release notes have been generated for the commit range
  - Fixed a bug where removing a container with a zombie exec session would fail the first time, but succeed for subsequent calls ([#14252](https://github.com/containers/podman/issues/14252)). ([#14258](https://github.com/containers/podman/pull/14258), [@mheon](https://github.com/mheon))
  - Fixes a bug in the parsing of --security-opt ([#14415](https://github.com/containers/podman/pull/14415), [@nicrowe00](https://github.com/nicrowe00))
  - Fixes premature container termination on Windows when API forwarding is not running ([#14250](https://github.com/containers/podman/pull/14250), [@n1hility](https://github.com/n1hility))
+ - Podman machine ssh will now preserve exit code from the ssh command ([#14417](https://github.com/containers/podman/pull/14417), [@Luap99](https://github.com/Luap99))
+ - Podman stats now works correctly with custom network interface names and when network disconnect was used. ([#14421](https://github.com/containers/podman/pull/14421), [@Luap99](https://github.com/Luap99))
+ - Podman system reset now properly deletes all podman machines and associated files. ([#14066](https://github.com/containers/podman/pull/14066), [@ashley-cui](https://github.com/ashley-cui))
  - Podman-remote no longer joins user NS ([#14010](https://github.com/containers/podman/pull/14010), [@vrothberg](https://github.com/vrothberg))
+ - The default network mode is now assigned by the server and not the client. ([#14436](https://github.com/containers/podman/pull/14436), [@Luap99](https://github.com/Luap99))
 
 ### Uncategorized
  - Adds support for build which allows using build-cache with --squash-all using --layers
@@ -68,10 +74,7 @@ The release notes have been generated for the commit range
  - Now play kube supports --userns=[auto|host] to run pods in a separate user namespace ([#14140](https://github.com/containers/podman/pull/14140), [@giuseppe](https://github.com/giuseppe))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
- - Podman machine ssh will now preserve exit code from the ssh command ([#14417](https://github.com/containers/podman/pull/14417), [@Luap99](https://github.com/Luap99))
- - Podman pod create now accepts a name argument. ([#14334](https://github.com/containers/podman/pull/14334), [@rhatdan](https://github.com/rhatdan))
- - Podman stats now works correctly with custom network interface names and when network disconnect was used. ([#14421](https://github.com/containers/podman/pull/14421), [@Luap99](https://github.com/Luap99))
- - Podman system reset now properly deletes all podman machines and associated files. ([#14066](https://github.com/containers/podman/pull/14066), [@ashley-cui](https://github.com/ashley-cui))
+ - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
