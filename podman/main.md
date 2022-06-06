@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...2777ecd53ea5c5c6f43713692436d1ecc0e861d5](https://github.com/containers/podman/compare/v4.0.0-rc2...2777ecd53ea5c5c6f43713692436d1ecc0e861d5) on Thu Jun  2 12:49:22 PM MDT 2022.
+[v4.0.0-rc2...48a4e6d69019390cc40cbb13b0a83456159d10b6](https://github.com/containers/podman/compare/v4.0.0-rc2...48a4e6d69019390cc40cbb13b0a83456159d10b6) on Mon Jun  6 08:03:43 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -60,10 +60,14 @@ The release notes have been generated for the commit range
   - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
+ - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
+ - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
+ - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
+ - Force removing a machine now stops the machine before deleting the files. ([#14470](https://github.com/containers/podman/pull/14470), [@shanesmith](https://github.com/shanesmith))
  - Implement --format flag for podman machine inspect. Example:
   
   $ podman machine inspect foo --format '{{.Name}}' ([#14099](https://github.com/containers/podman/pull/14099), [@jwhonce](https://github.com/jwhonce))
@@ -73,6 +77,8 @@ The release notes have been generated for the commit range
  - Improved shell completion for podman create/run --stop-signal. ([#14330](https://github.com/containers/podman/pull/14330), [@Luap99](https://github.com/Luap99))
  - Now play kube supports --userns=[auto|host] to run pods in a separate user namespace ([#14140](https://github.com/containers/podman/pull/14140), [@giuseppe](https://github.com/giuseppe))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
+ - Podman load CLI now mirrors docker load's imported image list output format ([#14460](https://github.com/containers/podman/pull/14460), [@cipherboy](https://github.com/cipherboy))
+ - Podman logs will now correctly display all output when the last line did not end with an newline. ([#14477](https://github.com/containers/podman/pull/14477), [@Luap99](https://github.com/Luap99))
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
@@ -147,7 +153,7 @@ The release notes have been generated for the commit range
 - github.com/containerd/go-cni: [v1.0.2 → v1.1.5](https://github.com/containerd/go-cni/compare/v1.0.2...v1.1.5)
 - github.com/containerd/imgcrypt: [v1.1.1 → v1.1.4](https://github.com/containerd/imgcrypt/compare/v1.1.1...v1.1.4)
 - github.com/containerd/stargz-snapshotter/estargz: [v0.10.1 → v0.11.4](https://github.com/containerd/stargz-snapshotter/estargz/compare/v0.10.1...v0.11.4)
-- github.com/containernetworking/cni: [v1.0.1 → v1.1.0](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.0)
+- github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
 - github.com/containers/buildah: [d744ebc → 5500333](https://github.com/containers/buildah/compare/d744ebc...5500333)
 - github.com/containers/common: [0e7aca7 → 2fd37da](https://github.com/containers/common/compare/0e7aca7...2fd37da)
