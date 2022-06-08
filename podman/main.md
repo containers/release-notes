@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...48a4e6d69019390cc40cbb13b0a83456159d10b6](https://github.com/containers/podman/compare/v4.0.0-rc2...48a4e6d69019390cc40cbb13b0a83456159d10b6) on Mon Jun  6 08:03:43 AM MDT 2022.
+[v4.0.0-rc2...b4c981893de2e2c5b0b6163961d6699098f5c1ae](https://github.com/containers/podman/compare/v4.0.0-rc2...b4c981893de2e2c5b0b6163961d6699098f5c1ae) on Tue Jun  7 08:13:41 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -58,6 +58,7 @@ The release notes have been generated for the commit range
  - Adds support for build which allows using build-cache with --squash-all using --layers
   - Adds support for new buildah feature --build-context where users can specify additional build context
   - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
+ - Adds support for non-volatile `upperdir`,`workdir` for anonymous overlay volumes ([#14474](https://github.com/containers/podman/pull/14474), [@flouthoc](https://github.com/flouthoc))
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
@@ -65,6 +66,8 @@ The release notes have been generated for the commit range
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
+ - Fixed a bug where network cleanup was not happening when a container used a custom user namespace and were initialized via API ([#14465](https://github.com/containers/podman/issues/14465)). ([#14507](https://github.com/containers/podman/pull/14507), [@Luap99](https://github.com/Luap99))
+ - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
  - Force removing a machine now stops the machine before deleting the files. ([#14470](https://github.com/containers/podman/pull/14470), [@shanesmith](https://github.com/shanesmith))
@@ -81,6 +84,7 @@ The release notes have been generated for the commit range
  - Podman logs will now correctly display all output when the last line did not end with an newline. ([#14477](https://github.com/containers/podman/pull/14477), [@Luap99](https://github.com/Luap99))
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
+ - Podman will now check for nameservers in /run/NetworkManager/no-stub-resolv.conf if the /etc/resolv.conf file only contains a localhost server. ([#14220](https://github.com/containers/podman/pull/14220), [@Luap99](https://github.com/Luap99))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
@@ -156,14 +160,14 @@ The release notes have been generated for the commit range
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
 - github.com/containers/buildah: [d744ebc → 5500333](https://github.com/containers/buildah/compare/d744ebc...5500333)
-- github.com/containers/common: [0e7aca7 → 2fd37da](https://github.com/containers/common/compare/0e7aca7...2fd37da)
+- github.com/containers/common: [0e7aca7 → 54c8092](https://github.com/containers/common/compare/0e7aca7...54c8092)
 - github.com/containers/image/v5: [v5.18.0 → e594853](https://github.com/containers/image/v5/compare/v5.18.0...e594853)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
 - github.com/containers/ocicrypt: [v1.1.2 → 566b808](https://github.com/containers/ocicrypt/compare/v1.1.2...566b808)
 - github.com/containers/storage: [v1.38.0 → 5019cd5](https://github.com/containers/storage/compare/v1.38.0...5019cd5)
 - github.com/coreos/etcd: [v3.3.10+incompatible → v3.3.13+incompatible](https://github.com/coreos/etcd/compare/v3.3.10...v3.3.13)
 - github.com/docker/distribution: [v2.7.1+incompatible → v2.8.1+incompatible](https://github.com/docker/distribution/compare/v2.7.1...v2.8.1)
-- github.com/docker/docker: [v20.10.12+incompatible → v20.10.16+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.16)
+- github.com/docker/docker: [v20.10.12+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.17)
 - github.com/docker/go-connections: [v0.4.0 → 58542c7](https://github.com/docker/go-connections/compare/v0.4.0...58542c7)
 - github.com/envoyproxy/go-control-plane: [v0.10.1 → cf90f65](https://github.com/envoyproxy/go-control-plane/compare/v0.10.1...cf90f65)
 - github.com/envoyproxy/protoc-gen-validate: [v0.6.2 → v0.1.0](https://github.com/envoyproxy/protoc-gen-validate/compare/v0.6.2...v0.1.0)
@@ -217,7 +221,7 @@ The release notes have been generated for the commit range
 - github.com/soheilhy/cmux: [v0.1.4 → v0.1.5](https://github.com/soheilhy/cmux/compare/v0.1.4...v0.1.5)
 - github.com/spf13/cobra: [v1.3.0 → v1.4.0](https://github.com/spf13/cobra/compare/v1.3.0...v1.4.0)
 - github.com/spf13/viper: [v1.10.0 → v1.9.0](https://github.com/spf13/viper/compare/v1.10.0...v1.9.0)
-- github.com/stretchr/testify: [v1.7.0 → v1.7.1](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.1)
+- github.com/stretchr/testify: [v1.7.0 → v1.7.2](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.2)
 - github.com/tmc/grpc-websocket-proxy: [3cfed13 → e5319fd](https://github.com/tmc/grpc-websocket-proxy/compare/3cfed13...e5319fd)
 - github.com/tv42/httpunix: [b75d861 → 2ba4b9c](https://github.com/tv42/httpunix/compare/b75d861...2ba4b9c)
 - github.com/urfave/cli/v2: [v2.3.0 → v2.5.1](https://github.com/urfave/cli/v2/compare/v2.3.0...v2.5.1)
