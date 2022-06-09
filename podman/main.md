@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...576c739e5ff01c760b383a258c62ed3ca7e1c30c](https://github.com/containers/podman/compare/v4.0.0-rc2...576c739e5ff01c760b383a258c62ed3ca7e1c30c) on Thu Jun  9 04:58:12 AM MDT 2022.
+[v4.0.0-rc2...9f1bd0a0a1494f46a49ca7f22511c5a78006afd8](https://github.com/containers/podman/compare/v4.0.0-rc2...9f1bd0a0a1494f46a49ca7f22511c5a78006afd8) on Thu Jun  9 03:24:43 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -37,6 +37,7 @@ The release notes have been generated for the commit range
 ### Documentation
  - Add doc outlining the kube yaml fields supported by podman play kube ([#14318](https://github.com/containers/podman/pull/14318), [@umohnani8](https://github.com/umohnani8))
  - Added a Windows tutorial ([#14141](https://github.com/containers/podman/pull/14141), [@n1hility](https://github.com/n1hility))
+ - Clarifies documentation on mount propagation with named or internal volumes ([#14405](https://github.com/containers/podman/pull/14405), [@rhatdan](https://github.com/rhatdan))
 
 ### Bug or Regression
  - Fix a bug in the resolution of images in the Docker compat API when resolving short names for images that do not live on Docker Hub. ([#14294](https://github.com/containers/podman/pull/14294), [@vrothberg](https://github.com/vrothberg))
@@ -64,11 +65,14 @@ The release notes have been generated for the commit range
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
  - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
+ - Fix a bug where `--file-locks` flag is ignored in `podman container restore` so that file locks checkpointed by `podman container checkpoint --file-locks` are not restored. ([#14542](https://github.com/containers/podman/pull/14542), [@hshiina](https://github.com/hshiina))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
+ - Fixed a bug where Podman could print error messages when signals were forwarded to a container via `--sig-proxy` to a container as the container process exited. ([#14533](https://github.com/containers/podman/pull/14533), [@mheon](https://github.com/mheon))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
+ - Fixed running machine start twice at the same time resulting in failure for both ([#14469](https://github.com/containers/podman/pull/14469), [@shanesmith](https://github.com/shanesmith))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
  - Force removing a machine now stops the machine before deleting the files. ([#14470](https://github.com/containers/podman/pull/14470), [@shanesmith](https://github.com/shanesmith))
  - Implement --format flag for podman machine inspect. Example:
@@ -207,7 +211,7 @@ The release notes have been generated for the commit range
 - github.com/moby/sys/symlink: [v0.1.0 → v0.2.0](https://github.com/moby/sys/symlink/compare/v0.1.0...v0.2.0)
 - github.com/mwitkow/go-conntrack: [cc309e4 → 2f06839](https://github.com/mwitkow/go-conntrack/compare/cc309e4...2f06839)
 - github.com/onsi/gomega: [v1.16.0 → v1.19.0](https://github.com/onsi/gomega/compare/v1.16.0...v1.19.0)
-- github.com/opencontainers/runc: [v1.1.0 → v1.1.2](https://github.com/opencontainers/runc/compare/v1.1.0...v1.1.2)
+- github.com/opencontainers/runc: [v1.1.0 → v1.1.3](https://github.com/opencontainers/runc/compare/v1.1.0...v1.1.3)
 - github.com/opencontainers/selinux: [v1.10.0 → v1.10.1](https://github.com/opencontainers/selinux/compare/v1.10.0...v1.10.1)
 - github.com/openshift/imagebuilder: [87f3e48 → 009dbc6](https://github.com/openshift/imagebuilder/compare/87f3e48...009dbc6)
 - github.com/ostreedev/ostree-go: [759a8c1 → 719684c](https://github.com/ostreedev/ostree-go/compare/759a8c1...719684c)
@@ -217,6 +221,7 @@ The release notes have been generated for the commit range
 - github.com/prometheus/procfs: [v0.6.0 → v0.7.3](https://github.com/prometheus/procfs/compare/v0.6.0...v0.7.3)
 - github.com/rootless-containers/rootlesskit: [v0.14.6 → v1.0.1](https://github.com/rootless-containers/rootlesskit/compare/v0.14.6...v1.0.1)
 - github.com/sagikazarmark/crypt: [v0.3.0 → v0.1.0](https://github.com/sagikazarmark/crypt/compare/v0.3.0...v0.1.0)
+- github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
 - github.com/sergi/go-diff: [v1.1.0 → v1.2.0](https://github.com/sergi/go-diff/compare/v1.1.0...v1.2.0)
 - github.com/soheilhy/cmux: [v0.1.4 → v0.1.5](https://github.com/soheilhy/cmux/compare/v0.1.4...v0.1.5)
 - github.com/spf13/cobra: [v1.3.0 → v1.4.0](https://github.com/spf13/cobra/compare/v1.3.0...v1.4.0)
