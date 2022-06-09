@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...b4c981893de2e2c5b0b6163961d6699098f5c1ae](https://github.com/containers/podman/compare/v4.0.0-rc2...b4c981893de2e2c5b0b6163961d6699098f5c1ae) on Tue Jun  7 08:13:41 PM MDT 2022.
+[v4.0.0-rc2...576c739e5ff01c760b383a258c62ed3ca7e1c30c](https://github.com/containers/podman/compare/v4.0.0-rc2...576c739e5ff01c760b383a258c62ed3ca7e1c30c) on Thu Jun  9 04:58:12 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -44,6 +44,7 @@ The release notes have been generated for the commit range
  - Fix a bug where the pause image of a Pod with a custom ID mapping could not be built (https://bugzilla.redhat.com/show_bug.cgi?id=2083997). ([#14232](https://github.com/containers/podman/pull/14232), [@vrothberg](https://github.com/vrothberg))
  - Fix a potential race when cleaning up systemd health-check units and timers. ([#14395](https://github.com/containers/podman/pull/14395), [@vrothberg](https://github.com/vrothberg))
  - Fixed a bug where a dangling ID in the database could render Podman unusable. ([#14321](https://github.com/containers/podman/pull/14321), [@mheon](https://github.com/mheon))
+ - Fixed a bug where network cleanup was not happening when a container used a custom user namespace and were initialized via API ([#14465](https://github.com/containers/podman/issues/14465)). ([#14507](https://github.com/containers/podman/pull/14507), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where podman container restore would fail if the container used --network none or ns:/path ([#14433](https://github.com/containers/podman/pull/14433), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where removing a container with a zombie exec session would fail the first time, but succeed for subsequent calls ([#14252](https://github.com/containers/podman/issues/14252)). ([#14258](https://github.com/containers/podman/pull/14258), [@mheon](https://github.com/mheon))
  - Fixes a bug in the parsing of --security-opt ([#14415](https://github.com/containers/podman/pull/14415), [@nicrowe00](https://github.com/nicrowe00))
@@ -66,7 +67,6 @@ The release notes have been generated for the commit range
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
- - Fixed a bug where network cleanup was not happening when a container used a custom user namespace and were initialized via API ([#14465](https://github.com/containers/podman/issues/14465)). ([#14507](https://github.com/containers/podman/pull/14507), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
