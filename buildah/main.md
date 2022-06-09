@@ -1,6 +1,7 @@
 - [buildah main](#buildah-main)
 - [Changelog since v1.26.0](#changelog-since-v1260)
   - [Changes by Kind](#changes-by-kind)
+    - [Bug or Regression](#bug-or-regression)
     - [Uncategorized](#uncategorized)
   - [Dependencies](#dependencies)
     - [Added](#added)
@@ -10,11 +11,14 @@
 # buildah main
 
 The release notes have been generated for the commit range
-[v1.26.0...005447be07eec196915cd62c7fb8b121a1cdc8e5](https://github.com/containers/buildah/compare/v1.26.0...005447be07eec196915cd62c7fb8b121a1cdc8e5) on Tue Jun  7 08:18:31 PM MDT 2022.
+[v1.26.0...a818b5527f02cfeaaeed271cf281081d5351ebb6](https://github.com/containers/buildah/compare/v1.26.0...a818b5527f02cfeaaeed271cf281081d5351ebb6) on Thu Jun  9 05:04:28 AM MDT 2022.
 
 # Changelog since v1.26.0
 
 ## Changes by Kind
+
+### Bug or Regression
+ - Buildah will now default correctly to google nameservers in /etc/resolv.conf if no servers are found in the hosts resolv.conf or otherwise specified via config ([#3986](https://github.com/containers/buildah/pull/3986), [@Luap99](https://github.com/Luap99))
 
 ### Uncategorized
  - Add a new `NoOverwriteNonDirDir` option to `copier.Put` to prevent a non-directory from being overwritten by a directory. ([#4043](https://github.com/containers/buildah/pull/4043), [@vrothberg](https://github.com/vrothberg))
@@ -31,7 +35,7 @@ _Nothing has changed._
 - github.com/containerd/containerd: [v1.6.4 → v1.6.6](https://github.com/containerd/containerd/compare/v1.6.4...v1.6.6)
 - github.com/containerd/go-cni: [v1.1.5 → v1.1.6](https://github.com/containerd/go-cni/compare/v1.1.5...v1.1.6)
 - github.com/containernetworking/cni: [v1.1.0 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.1.0...v1.1.1)
-- github.com/containers/common: [v0.48.0 → 280c6f6](https://github.com/containers/common/compare/v0.48.0...280c6f6)
+- github.com/containers/common: [v0.48.0 → dbecabb](https://github.com/containers/common/compare/v0.48.0...dbecabb)
 - github.com/containers/image/v5: [v5.21.1 → e594853](https://github.com/containers/image/v5/compare/v5.21.1...e594853)
 - github.com/containers/storage: [v1.40.2 → 5019cd5](https://github.com/containers/storage/compare/v1.40.2...5019cd5)
 - github.com/docker/docker: [v20.10.14+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.14...v20.10.17)
@@ -47,4 +51,5 @@ _Nothing has changed._
 - gopkg.in/yaml.v3: 496545a → v3.0.1
 
 ### Removed
-_Nothing has changed._
+- github.com/docker/libnetwork: [5a177b7](https://github.com/docker/libnetwork/tree/5a177b7)
+- github.com/ishidawataru/sctp: [f2269e6](https://github.com/ishidawataru/sctp/tree/f2269e6)
