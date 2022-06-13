@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...9f1bd0a0a1494f46a49ca7f22511c5a78006afd8](https://github.com/containers/podman/compare/v4.0.0-rc2...9f1bd0a0a1494f46a49ca7f22511c5a78006afd8) on Thu Jun  9 03:24:43 PM MDT 2022.
+[v4.0.0-rc2...b34cba6cd53cfd4df58f2b26d3e5a6be86dfb132](https://github.com/containers/podman/compare/v4.0.0-rc2...b34cba6cd53cfd4df58f2b26d3e5a6be86dfb132) on Mon Jun 13 08:48:05 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -66,6 +66,7 @@ The release notes have been generated for the commit range
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
  - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
  - Fix a bug where `--file-locks` flag is ignored in `podman container restore` so that file locks checkpointed by `podman container checkpoint --file-locks` are not restored. ([#14542](https://github.com/containers/podman/pull/14542), [@hshiina](https://github.com/hshiina))
+ - Fix a bug where `podman cp` would overwrite directories with non-directories and vice versa.  A new `--overwrite` flag allows for opting into the old behavior if needed. ([#14526](https://github.com/containers/podman/pull/14526), [@vrothberg](https://github.com/vrothberg))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
@@ -83,6 +84,7 @@ The release notes have been generated for the commit range
  - Improved handling for the --format option shell completion. ([#14263](https://github.com/containers/podman/pull/14263), [@Luap99](https://github.com/Luap99))
  - Improved shell completion for podman create/run --stop-signal. ([#14330](https://github.com/containers/podman/pull/14330), [@Luap99](https://github.com/Luap99))
  - Now play kube supports --userns=[auto|host] to run pods in a separate user namespace ([#14140](https://github.com/containers/podman/pull/14140), [@giuseppe](https://github.com/giuseppe))
+ - Podman --remote push now supports --remove-signatures ([#14560](https://github.com/containers/podman/pull/14560), [@rhatdan](https://github.com/rhatdan))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
  - Podman load CLI now mirrors docker load's imported image list output format ([#14460](https://github.com/containers/podman/pull/14460), [@cipherboy](https://github.com/cipherboy))
  - Podman logs will now correctly display all output when the last line did not end with an newline. ([#14477](https://github.com/containers/podman/pull/14477), [@Luap99](https://github.com/Luap99))
@@ -145,6 +147,7 @@ The release notes have been generated for the commit range
 - github.com/Azure/go-autorest/logger: [v0.2.0 → v0.2.1](https://github.com/Azure/go-autorest/logger/compare/v0.2.0...v0.2.1)
 - github.com/BurntSushi/toml: [v1.0.0 → v1.1.0](https://github.com/BurntSushi/toml/compare/v1.0.0...v1.1.0)
 - github.com/Microsoft/go-winio: [v0.5.1 → v0.5.2](https://github.com/Microsoft/go-winio/compare/v0.5.1...v0.5.2)
+- github.com/Microsoft/hcsshim: [v0.9.2 → v0.9.3](https://github.com/Microsoft/hcsshim/compare/v0.9.2...v0.9.3)
 - github.com/NYTimes/gziphandler: [56545f4 → v1.1.1](https://github.com/NYTimes/gziphandler/compare/56545f4...v1.1.1)
 - github.com/alecthomas/units: [c3de453 → f65c72e](https://github.com/alecthomas/units/compare/c3de453...f65c72e)
 - github.com/armon/go-metrics: [v0.3.10 → f0300d1](https://github.com/armon/go-metrics/compare/v0.3.10...f0300d1)
@@ -156,14 +159,14 @@ The release notes have been generated for the commit range
 - github.com/cockroachdb/datadriven: [80d97fb → bf6692d](https://github.com/cockroachdb/datadriven/compare/80d97fb...bf6692d)
 - github.com/container-orchestrated-devices/container-device-interface: [46367ec → v0.4.0](https://github.com/container-orchestrated-devices/container-device-interface/compare/46367ec...v0.4.0)
 - github.com/containerd/cgroups: [v1.0.1 → v1.0.3](https://github.com/containerd/cgroups/compare/v1.0.1...v1.0.3)
-- github.com/containerd/containerd: [v1.5.9 → v1.6.4](https://github.com/containerd/containerd/compare/v1.5.9...v1.6.4)
+- github.com/containerd/containerd: [v1.5.9 → v1.6.6](https://github.com/containerd/containerd/compare/v1.5.9...v1.6.6)
 - github.com/containerd/continuity: [v0.1.0 → v0.2.2](https://github.com/containerd/continuity/compare/v0.1.0...v0.2.2)
-- github.com/containerd/go-cni: [v1.0.2 → v1.1.5](https://github.com/containerd/go-cni/compare/v1.0.2...v1.1.5)
+- github.com/containerd/go-cni: [v1.0.2 → v1.1.6](https://github.com/containerd/go-cni/compare/v1.0.2...v1.1.6)
 - github.com/containerd/imgcrypt: [v1.1.1 → v1.1.4](https://github.com/containerd/imgcrypt/compare/v1.1.1...v1.1.4)
 - github.com/containerd/stargz-snapshotter/estargz: [v0.10.1 → v0.11.4](https://github.com/containerd/stargz-snapshotter/estargz/compare/v0.10.1...v0.11.4)
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
-- github.com/containers/buildah: [d744ebc → 5500333](https://github.com/containers/buildah/compare/d744ebc...5500333)
+- github.com/containers/buildah: [d744ebc → 005447b](https://github.com/containers/buildah/compare/d744ebc...005447b)
 - github.com/containers/common: [0e7aca7 → 54c8092](https://github.com/containers/common/compare/0e7aca7...54c8092)
 - github.com/containers/image/v5: [v5.18.0 → e594853](https://github.com/containers/image/v5/compare/v5.18.0...e594853)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
@@ -177,7 +180,7 @@ The release notes have been generated for the commit range
 - github.com/envoyproxy/protoc-gen-validate: [v0.6.2 → v0.1.0](https://github.com/envoyproxy/protoc-gen-validate/compare/v0.6.2...v0.1.0)
 - github.com/form3tech-oss/jwt-go: [v3.2.2+incompatible → v3.2.3+incompatible](https://github.com/form3tech-oss/jwt-go/compare/v3.2.2...v3.2.3)
 - github.com/fsnotify/fsnotify: [v1.5.1 → v1.5.4](https://github.com/fsnotify/fsnotify/compare/v1.5.1...v1.5.4)
-- github.com/fsouza/go-dockerclient: [v1.7.7 → v1.7.11](https://github.com/fsouza/go-dockerclient/compare/v1.7.7...v1.7.11)
+- github.com/fsouza/go-dockerclient: [v1.7.7 → v1.8.1](https://github.com/fsouza/go-dockerclient/compare/v1.7.7...v1.8.1)
 - github.com/go-logfmt/logfmt: [v0.4.0 → v0.5.0](https://github.com/go-logfmt/logfmt/compare/v0.4.0...v0.5.0)
 - github.com/go-logr/logr: [v0.4.0 → v1.2.2](https://github.com/go-logr/logr/compare/v0.4.0...v1.2.2)
 - github.com/go-openapi/jsonpointer: [v0.19.3 → v0.19.5](https://github.com/go-openapi/jsonpointer/compare/v0.19.3...v0.19.5)
@@ -207,7 +210,8 @@ The release notes have been generated for the commit range
 - github.com/miekg/dns: [v1.1.41 → v1.1.35](https://github.com/miekg/dns/compare/v1.1.41...v1.1.35)
 - github.com/miekg/pkcs11: [v1.0.3 → v1.1.1](https://github.com/miekg/pkcs11/compare/v1.0.3...v1.1.1)
 - github.com/mitchellh/mapstructure: [v1.4.3 → v1.4.2](https://github.com/mitchellh/mapstructure/compare/v1.4.3...v1.4.2)
-- github.com/moby/sys/mountinfo: [v0.5.0 → v0.6.1](https://github.com/moby/sys/mountinfo/compare/v0.5.0...v0.6.1)
+- github.com/moby/sys/mount: [v0.2.0 → v0.3.3](https://github.com/moby/sys/mount/compare/v0.2.0...v0.3.3)
+- github.com/moby/sys/mountinfo: [v0.5.0 → v0.6.2](https://github.com/moby/sys/mountinfo/compare/v0.5.0...v0.6.2)
 - github.com/moby/sys/symlink: [v0.1.0 → v0.2.0](https://github.com/moby/sys/symlink/compare/v0.1.0...v0.2.0)
 - github.com/mwitkow/go-conntrack: [cc309e4 → 2f06839](https://github.com/mwitkow/go-conntrack/compare/cc309e4...2f06839)
 - github.com/onsi/gomega: [v1.16.0 → v1.19.0](https://github.com/onsi/gomega/compare/v1.16.0...v1.19.0)
@@ -242,7 +246,7 @@ The release notes have been generated for the commit range
 - golang.org/x/net: 69e39ba → 27dd868
 - golang.org/x/oauth2: d3ed0bb → 2bc19b1
 - golang.org/x/sys: da31bd3 → bc2c85a
-- golang.org/x/term: 6886f2d → 03fcf44
+- golang.org/x/term: 6886f2d → 065cf7b
 - golang.org/x/time: 3af7569 → 1f47c86
 - golang.org/x/tools: v0.1.7 → v0.1.10
 - google.golang.org/api: v0.62.0 → v0.56.0
