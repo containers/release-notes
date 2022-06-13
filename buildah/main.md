@@ -12,7 +12,7 @@
 # buildah main
 
 The release notes have been generated for the commit range
-[v1.26.0...2ed9d50514d61b513016cb6d023dcf98db048829](https://github.com/containers/buildah/compare/v1.26.0...2ed9d50514d61b513016cb6d023dcf98db048829) on Thu Jun  9 03:31:11 PM MDT 2022.
+[v1.26.0...e66309ebde8c9d3af085fbb8e81ea0906207f44e](https://github.com/containers/buildah/compare/v1.26.0...e66309ebde8c9d3af085fbb8e81ea0906207f44e) on Mon Jun 13 08:54:19 AM MDT 2022.
 
 # Changelog since v1.26.0
 
@@ -54,6 +54,7 @@ _Nothing has changed._
 - github.com/proglottis/gpgme: [v0.1.1 → v0.1.2](https://github.com/proglottis/gpgme/compare/v0.1.1...v0.1.2)
 - github.com/rogpeppe/go-internal: [v1.3.0 → v1.6.1](https://github.com/rogpeppe/go-internal/compare/v1.3.0...v1.6.1)
 - github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
+- github.com/sirupsen/logrus: [v1.4.2 → v1.8.1](https://github.com/sirupsen/logrus/compare/v1.4.2...v1.8.1)
 - github.com/stretchr/testify: [v1.7.1 → v1.7.2](https://github.com/stretchr/testify/compare/v1.7.1...v1.7.2)
 - github.com/urfave/cli: [v1.22.4 → v1.22.9](https://github.com/urfave/cli/compare/v1.22.4...v1.22.9)
 - golang.org/x/sys: 9388b58 → bc2c85a
