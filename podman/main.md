@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...b34cba6cd53cfd4df58f2b26d3e5a6be86dfb132](https://github.com/containers/podman/compare/v4.0.0-rc2...b34cba6cd53cfd4df58f2b26d3e5a6be86dfb132) on Mon Jun 13 08:48:05 AM MDT 2022.
+[v4.0.0-rc2...e084f0ee1e1ded564110e84eefca9f18b5669adf](https://github.com/containers/podman/compare/v4.0.0-rc2...e084f0ee1e1ded564110e84eefca9f18b5669adf) on Tue Jun 14 02:03:32 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -71,11 +71,14 @@ The release notes have been generated for the commit range
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
  - Fixed a bug where Podman could print error messages when signals were forwarded to a container via `--sig-proxy` to a container as the container process exited. ([#14533](https://github.com/containers/podman/pull/14533), [@mheon](https://github.com/mheon))
+ - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
+ - Fixed a bug where using the `podman stats` command on a non-running container would return an error instead of zeroed values ([#14580](https://github.com/containers/podman/pull/14580), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed running machine start twice at the same time resulting in failure for both ([#14469](https://github.com/containers/podman/pull/14469), [@shanesmith](https://github.com/shanesmith))
  - Fixes runtime warning on podman machine commands on Windows ([#14206](https://github.com/containers/podman/pull/14206), [@n1hility](https://github.com/n1hility))
  - Force removing a machine now stops the machine before deleting the files. ([#14470](https://github.com/containers/podman/pull/14470), [@shanesmith](https://github.com/shanesmith))
+ - If /run is on a volume then the file `/run/.containerenv` is not created automatically anymore ([#14582](https://github.com/containers/podman/pull/14582), [@giuseppe](https://github.com/giuseppe))
  - Implement --format flag for podman machine inspect. Example:
   
   $ podman machine inspect foo --format '{{.Name}}' ([#14099](https://github.com/containers/podman/pull/14099), [@jwhonce](https://github.com/jwhonce))
@@ -85,6 +88,8 @@ The release notes have been generated for the commit range
  - Improved shell completion for podman create/run --stop-signal. ([#14330](https://github.com/containers/podman/pull/14330), [@Luap99](https://github.com/Luap99))
  - Now play kube supports --userns=[auto|host] to run pods in a separate user namespace ([#14140](https://github.com/containers/podman/pull/14140), [@giuseppe](https://github.com/giuseppe))
  - Podman --remote push now supports --remove-signatures ([#14560](https://github.com/containers/podman/pull/14560), [@rhatdan](https://github.com/rhatdan))
+ - Podman build now supports the --omit-history option which eliminates the history field from images. 
+  podman build now supports --logsplit which allows you to specify a directory for build logs when using multiple platforms.  One log for each platform will be generated in the specified directory. ([#14561](https://github.com/containers/podman/pull/14561), [@rhatdan](https://github.com/rhatdan))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
  - Podman load CLI now mirrors docker load's imported image list output format ([#14460](https://github.com/containers/podman/pull/14460), [@cipherboy](https://github.com/cipherboy))
  - Podman logs will now correctly display all output when the last line did not end with an newline. ([#14477](https://github.com/containers/podman/pull/14477), [@Luap99](https://github.com/Luap99))
@@ -155,6 +160,7 @@ The release notes have been generated for the commit range
 - github.com/cenkalti/backoff/v4: [v4.1.1 → v4.1.2](https://github.com/cenkalti/backoff/v4/compare/v4.1.1...v4.1.2)
 - github.com/census-instrumentation/opencensus-proto: [v0.3.0 → v0.2.1](https://github.com/census-instrumentation/opencensus-proto/compare/v0.3.0...v0.2.1)
 - github.com/checkpoint-restore/checkpointctl: [54b4ebf → 33f4a66](https://github.com/checkpoint-restore/checkpointctl/compare/54b4ebf...33f4a66)
+- github.com/cilium/ebpf: [v0.7.0 → v0.9.0](https://github.com/cilium/ebpf/compare/v0.7.0...v0.9.0)
 - github.com/cncf/xds/go: [a8f9461 → cb28da3](https://github.com/cncf/xds/go/compare/a8f9461...cb28da3)
 - github.com/cockroachdb/datadriven: [80d97fb → bf6692d](https://github.com/cockroachdb/datadriven/compare/80d97fb...bf6692d)
 - github.com/container-orchestrated-devices/container-device-interface: [46367ec → v0.4.0](https://github.com/container-orchestrated-devices/container-device-interface/compare/46367ec...v0.4.0)
@@ -166,12 +172,12 @@ The release notes have been generated for the commit range
 - github.com/containerd/stargz-snapshotter/estargz: [v0.10.1 → v0.11.4](https://github.com/containerd/stargz-snapshotter/estargz/compare/v0.10.1...v0.11.4)
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
-- github.com/containers/buildah: [d744ebc → 005447b](https://github.com/containers/buildah/compare/d744ebc...005447b)
-- github.com/containers/common: [0e7aca7 → 54c8092](https://github.com/containers/common/compare/0e7aca7...54c8092)
+- github.com/containers/buildah: [d744ebc → e66309e](https://github.com/containers/buildah/compare/d744ebc...e66309e)
+- github.com/containers/common: [0e7aca7 → dbecabb](https://github.com/containers/common/compare/0e7aca7...dbecabb)
 - github.com/containers/image/v5: [v5.18.0 → e594853](https://github.com/containers/image/v5/compare/v5.18.0...e594853)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
 - github.com/containers/ocicrypt: [v1.1.2 → 566b808](https://github.com/containers/ocicrypt/compare/v1.1.2...566b808)
-- github.com/containers/storage: [v1.38.0 → 5019cd5](https://github.com/containers/storage/compare/v1.38.0...5019cd5)
+- github.com/containers/storage: [v1.38.0 → 8951d01](https://github.com/containers/storage/compare/v1.38.0...8951d01)
 - github.com/coreos/etcd: [v3.3.10+incompatible → v3.3.13+incompatible](https://github.com/coreos/etcd/compare/v3.3.10...v3.3.13)
 - github.com/docker/distribution: [v2.7.1+incompatible → v2.8.1+incompatible](https://github.com/docker/distribution/compare/v2.7.1...v2.8.1)
 - github.com/docker/docker: [v20.10.12+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.17)
@@ -179,6 +185,7 @@ The release notes have been generated for the commit range
 - github.com/envoyproxy/go-control-plane: [v0.10.1 → cf90f65](https://github.com/envoyproxy/go-control-plane/compare/v0.10.1...cf90f65)
 - github.com/envoyproxy/protoc-gen-validate: [v0.6.2 → v0.1.0](https://github.com/envoyproxy/protoc-gen-validate/compare/v0.6.2...v0.1.0)
 - github.com/form3tech-oss/jwt-go: [v3.2.2+incompatible → v3.2.3+incompatible](https://github.com/form3tech-oss/jwt-go/compare/v3.2.2...v3.2.3)
+- github.com/frankban/quicktest: [v1.11.3 → v1.14.0](https://github.com/frankban/quicktest/compare/v1.11.3...v1.14.0)
 - github.com/fsnotify/fsnotify: [v1.5.1 → v1.5.4](https://github.com/fsnotify/fsnotify/compare/v1.5.1...v1.5.4)
 - github.com/fsouza/go-dockerclient: [v1.7.7 → v1.8.1](https://github.com/fsouza/go-dockerclient/compare/v1.7.7...v1.8.1)
 - github.com/go-logfmt/logfmt: [v0.4.0 → v0.5.0](https://github.com/go-logfmt/logfmt/compare/v0.4.0...v0.5.0)
@@ -204,7 +211,8 @@ The release notes have been generated for the commit range
 - github.com/jinzhu/copier: [v0.3.4 → v0.3.5](https://github.com/jinzhu/copier/compare/v0.3.4...v0.3.5)
 - github.com/jonboulle/clockwork: [v0.2.0 → v0.2.2](https://github.com/jonboulle/clockwork/compare/v0.2.0...v0.2.2)
 - github.com/julienschmidt/httprouter: [v1.2.0 → v1.3.0](https://github.com/julienschmidt/httprouter/compare/v1.2.0...v1.3.0)
-- github.com/klauspost/compress: [v1.14.1 → v1.15.4](https://github.com/klauspost/compress/compare/v1.14.1...v1.15.4)
+- github.com/klauspost/compress: [v1.14.1 → v1.15.6](https://github.com/klauspost/compress/compare/v1.14.1...v1.15.6)
+- github.com/kr/pretty: [v0.2.1 → v0.3.0](https://github.com/kr/pretty/compare/v0.2.1...v0.3.0)
 - github.com/mailru/easyjson: [v0.7.0 → v0.7.6](https://github.com/mailru/easyjson/compare/v0.7.0...v0.7.6)
 - github.com/mattn/go-colorable: [v0.1.12 → v0.1.11](https://github.com/mattn/go-colorable/compare/v0.1.12...v0.1.11)
 - github.com/miekg/dns: [v1.1.41 → v1.1.35](https://github.com/miekg/dns/compare/v1.1.41...v1.1.35)
@@ -234,6 +242,7 @@ The release notes have been generated for the commit range
 - github.com/tmc/grpc-websocket-proxy: [3cfed13 → e5319fd](https://github.com/tmc/grpc-websocket-proxy/compare/3cfed13...e5319fd)
 - github.com/tv42/httpunix: [b75d861 → 2ba4b9c](https://github.com/tv42/httpunix/compare/b75d861...2ba4b9c)
 - github.com/urfave/cli/v2: [v2.3.0 → v2.5.1](https://github.com/urfave/cli/v2/compare/v2.3.0...v2.5.1)
+- github.com/urfave/cli: [v1.22.4 → v1.22.9](https://github.com/urfave/cli/compare/v1.22.4...v1.22.9)
 - github.com/vbauerster/mpb/v7: [v7.3.0 → v7.4.2](https://github.com/vbauerster/mpb/v7/compare/v7.3.0...v7.4.2)
 - github.com/xeipuuv/gojsonpointer: [df4f5c8 → 02993c4](https://github.com/xeipuuv/gojsonpointer/compare/df4f5c8...02993c4)
 - github.com/yuin/goldmark: [v1.4.0 → v1.4.1](https://github.com/yuin/goldmark/compare/v1.4.0...v1.4.1)
@@ -272,6 +281,7 @@ The release notes have been generated for the commit range
 - github.com/circonus-labs/circonusllhist: [v0.1.3](https://github.com/circonus-labs/circonusllhist/tree/v0.1.3)
 - github.com/hashicorp/go-retryablehttp: [v0.5.3](https://github.com/hashicorp/go-retryablehttp/tree/v0.5.3)
 - github.com/iancoleman/strcase: [v0.2.0](https://github.com/iancoleman/strcase/tree/v0.2.0)
+- github.com/ishidawataru/sctp: [f2269e6](https://github.com/ishidawataru/sctp/tree/f2269e6)
 - github.com/lyft/protoc-gen-star: [v0.5.3](https://github.com/lyft/protoc-gen-star/tree/v0.5.3)
 - github.com/mtrmac/gpgme: [v0.1.2](https://github.com/mtrmac/gpgme/tree/v0.1.2)
 - github.com/vbauerster/mpb/v6: [v6.0.4](https://github.com/vbauerster/mpb/v6/tree/v6.0.4)
