@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...e084f0ee1e1ded564110e84eefca9f18b5669adf](https://github.com/containers/podman/compare/v4.0.0-rc2...e084f0ee1e1ded564110e84eefca9f18b5669adf) on Tue Jun 14 02:03:32 PM MDT 2022.
+[v4.0.0-rc2...31095349e394b4f5db0b76d3e4c5d05d3e6d05c3](https://github.com/containers/podman/compare/v4.0.0-rc2...31095349e394b4f5db0b76d3e4c5d05d3e6d05c3) on Wed Jun 15 01:42:57 PM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -64,6 +64,7 @@ The release notes have been generated for the commit range
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
+ - Containers created by system service running under systemd survive after the Podman daemon is stopped ([#14596](https://github.com/containers/podman/pull/14596), [@giuseppe](https://github.com/giuseppe))
  - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
  - Fix a bug where `--file-locks` flag is ignored in `podman container restore` so that file locks checkpointed by `podman container checkpoint --file-locks` are not restored. ([#14542](https://github.com/containers/podman/pull/14542), [@hshiina](https://github.com/hshiina))
  - Fix a bug where `podman cp` would overwrite directories with non-directories and vice versa.  A new `--overwrite` flag allows for opting into the old behavior if needed. ([#14526](https://github.com/containers/podman/pull/14526), [@vrothberg](https://github.com/vrothberg))
