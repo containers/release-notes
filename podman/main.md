@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...31095349e394b4f5db0b76d3e4c5d05d3e6d05c3](https://github.com/containers/podman/compare/v4.0.0-rc2...31095349e394b4f5db0b76d3e4c5d05d3e6d05c3) on Wed Jun 15 01:42:57 PM MDT 2022.
+[v4.0.0-rc2...ff06c791ad7fb32b6a055e0d005f7354df43a5d1](https://github.com/containers/podman/compare/v4.0.0-rc2...ff06c791ad7fb32b6a055e0d005f7354df43a5d1) on Sat Jun 18 05:47:54 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -61,6 +61,7 @@ The release notes have been generated for the commit range
   - Adds support for new buildah feature --build-context where users can specify additional build context
   - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
  - Adds support for non-volatile `upperdir`,`workdir` for anonymous overlay volumes ([#14474](https://github.com/containers/podman/pull/14474), [@flouthoc](https://github.com/flouthoc))
+ - Allow user to clone pods using the CLI. New options include --start --destroy and --name ([#14299](https://github.com/containers/podman/pull/14299), [@cdoern](https://github.com/cdoern))
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
@@ -70,8 +71,11 @@ The release notes have been generated for the commit range
  - Fix a bug where `podman cp` would overwrite directories with non-directories and vice versa.  A new `--overwrite` flag allows for opting into the old behavior if needed. ([#14526](https://github.com/containers/podman/pull/14526), [@vrothberg](https://github.com/vrothberg))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
+ - Fix interrupting a machine start leaves the machine unstartable ([#14610](https://github.com/containers/podman/pull/14610), [@shanesmith](https://github.com/shanesmith))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
+ - Fix: #14416 : `machine init` fails when ran from C:\Windows\System32 on Windows ([#14570](https://github.com/containers/podman/pull/14570), [@Clivar](https://github.com/Clivar))
  - Fixed a bug where Podman could print error messages when signals were forwarded to a container via `--sig-proxy` to a container as the container process exited. ([#14533](https://github.com/containers/podman/pull/14533), [@mheon](https://github.com/mheon))
+ - Fixed a bug where `podman -h` did not show the help output. ([#14619](https://github.com/containers/podman/pull/14619), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
@@ -106,7 +110,7 @@ The release notes have been generated for the commit range
 
 ### Added
 - github.com/AdaLogics/go-fuzz-headers: [6c3934b](https://github.com/AdaLogics/go-fuzz-headers/tree/6c3934b)
-- github.com/ProtonMail/go-crypto: [a948124](https://github.com/ProtonMail/go-crypto/tree/a948124)
+- github.com/ProtonMail/go-crypto: [88bb529](https://github.com/ProtonMail/go-crypto/tree/88bb529)
 - github.com/benbjohnson/clock: [v1.0.3](https://github.com/benbjohnson/clock/tree/v1.0.3)
 - github.com/certifi/gocertifi: [2c3bb06](https://github.com/certifi/gocertifi/tree/2c3bb06)
 - github.com/cockroachdb/errors: [v1.2.4](https://github.com/cockroachdb/errors/tree/v1.2.4)
@@ -122,7 +126,7 @@ The release notes have been generated for the commit range
 - github.com/onsi/ginkgo/v2: [v2.1.4](https://github.com/onsi/ginkgo/v2/tree/v2.1.4)
 - github.com/proglottis/gpgme: [v0.1.2](https://github.com/proglottis/gpgme/tree/v0.1.2)
 - github.com/sebdah/goldie/v2: [v2.5.3](https://github.com/sebdah/goldie/v2/tree/v2.5.3)
-- github.com/sylabs/sif/v2: [v2.7.0](https://github.com/sylabs/sif/v2/tree/v2.7.0)
+- github.com/sylabs/sif/v2: [v2.7.1](https://github.com/sylabs/sif/v2/tree/v2.7.1)
 - go.etcd.io/etcd/client/v3: v3.5.0
 - go.etcd.io/etcd/pkg/v3: v3.5.0
 - go.etcd.io/etcd/raft/v3: v3.5.0
@@ -175,10 +179,10 @@ The release notes have been generated for the commit range
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
 - github.com/containers/buildah: [d744ebc → e66309e](https://github.com/containers/buildah/compare/d744ebc...e66309e)
 - github.com/containers/common: [0e7aca7 → dbecabb](https://github.com/containers/common/compare/0e7aca7...dbecabb)
-- github.com/containers/image/v5: [v5.18.0 → e594853](https://github.com/containers/image/v5/compare/v5.18.0...e594853)
+- github.com/containers/image/v5: [v5.18.0 → 929f14a](https://github.com/containers/image/v5/compare/v5.18.0...929f14a)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
-- github.com/containers/ocicrypt: [v1.1.2 → 566b808](https://github.com/containers/ocicrypt/compare/v1.1.2...566b808)
-- github.com/containers/storage: [v1.38.0 → 8951d01](https://github.com/containers/storage/compare/v1.38.0...8951d01)
+- github.com/containers/ocicrypt: [v1.1.2 → v1.1.5](https://github.com/containers/ocicrypt/compare/v1.1.2...v1.1.5)
+- github.com/containers/storage: [v1.38.0 → 7df6428](https://github.com/containers/storage/compare/v1.38.0...7df6428)
 - github.com/coreos/etcd: [v3.3.10+incompatible → v3.3.13+incompatible](https://github.com/coreos/etcd/compare/v3.3.10...v3.3.13)
 - github.com/docker/distribution: [v2.7.1+incompatible → v2.8.1+incompatible](https://github.com/docker/distribution/compare/v2.7.1...v2.8.1)
 - github.com/docker/docker: [v20.10.12+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.17)
@@ -208,6 +212,7 @@ The release notes have been generated for the commit range
 - github.com/hashicorp/mdns: [v1.0.4 → v1.0.1](https://github.com/hashicorp/mdns/compare/v1.0.4...v1.0.1)
 - github.com/hashicorp/memberlist: [v0.3.0 → v0.2.2](https://github.com/hashicorp/memberlist/compare/v0.3.0...v0.2.2)
 - github.com/hashicorp/serf: [v0.9.6 → v0.9.5](https://github.com/hashicorp/serf/compare/v0.9.6...v0.9.5)
+- github.com/imdario/mergo: [v0.3.12 → v0.3.13](https://github.com/imdario/mergo/compare/v0.3.12...v0.3.13)
 - github.com/insomniacslk/dhcp: [ad197bc → 3c283ff](https://github.com/insomniacslk/dhcp/compare/ad197bc...3c283ff)
 - github.com/jinzhu/copier: [v0.3.4 → v0.3.5](https://github.com/jinzhu/copier/compare/v0.3.4...v0.3.5)
 - github.com/jonboulle/clockwork: [v0.2.0 → v0.2.2](https://github.com/jonboulle/clockwork/compare/v0.2.0...v0.2.2)
