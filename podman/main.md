@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...ff06c791ad7fb32b6a055e0d005f7354df43a5d1](https://github.com/containers/podman/compare/v4.0.0-rc2...ff06c791ad7fb32b6a055e0d005f7354df43a5d1) on Sat Jun 18 05:47:54 AM MDT 2022.
+[v4.0.0-rc2...2382955c6a88e506ce6d85477c8c68bd24859bdd](https://github.com/containers/podman/compare/v4.0.0-rc2...2382955c6a88e506ce6d85477c8c68bd24859bdd) on Wed Jun 22 07:50:31 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -57,13 +57,16 @@ The release notes have been generated for the commit range
  - The default network mode is now assigned by the server and not the client. ([#14436](https://github.com/containers/podman/pull/14436), [@Luap99](https://github.com/Luap99))
 
 ### Uncategorized
+ - Added support for `network ls --filter dangling=true/false` ([#14643](https://github.com/containers/podman/pull/14643), [@clobrano](https://github.com/clobrano))
  - Adds support for build which allows using build-cache with --squash-all using --layers
   - Adds support for new buildah feature --build-context where users can specify additional build context
   - Adds support --cpp-flag in podman build which allows additional flags to pass to the C Preprocessor cpp with Containerfile.in ([#14320](https://github.com/containers/podman/pull/14320), [@flouthoc](https://github.com/flouthoc))
  - Adds support for non-volatile `upperdir`,`workdir` for anonymous overlay volumes ([#14474](https://github.com/containers/podman/pull/14474), [@flouthoc](https://github.com/flouthoc))
  - Allow user to clone pods using the CLI. New options include --start --destroy and --name ([#14299](https://github.com/containers/podman/pull/14299), [@cdoern](https://github.com/cdoern))
+ - Allow users to utilize the --shm-size flag on a pod level. ([#14625](https://github.com/containers/podman/pull/14625), [@cdoern](https://github.com/cdoern))
  - Be more precise about the problem when  RunRoot is not writable ([#14255](https://github.com/containers/podman/pull/14255), [@hiredman](https://github.com/hiredman))
  - Builds with GPGME now require GPGME ≥ 1.13.0. ([#14300](https://github.com/containers/podman/pull/14300), [@mtrmac](https://github.com/mtrmac))
+ - Change Windows installer to open tutorial after install ([#14631](https://github.com/containers/podman/pull/14631), [@n1hility](https://github.com/n1hility))
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
  - Containers created by system service running under systemd survive after the Podman daemon is stopped ([#14596](https://github.com/containers/podman/pull/14596), [@giuseppe](https://github.com/giuseppe))
  - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
@@ -78,6 +81,7 @@ The release notes have been generated for the commit range
  - Fixed a bug where `podman -h` did not show the help output. ([#14619](https://github.com/containers/podman/pull/14619), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
+ - Fixed a bug where the /libpod/containers/json endpoint did not return the application/json content type header when the container list is empty. ([#14662](https://github.com/containers/podman/pull/14662), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
  - Fixed a bug where using the `podman stats` command on a non-running container would return an error instead of zeroed values ([#14580](https://github.com/containers/podman/pull/14580), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed running machine start twice at the same time resulting in failure for both ([#14469](https://github.com/containers/podman/pull/14469), [@shanesmith](https://github.com/shanesmith))
@@ -102,8 +106,10 @@ The release notes have been generated for the commit range
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Podman will now check for nameservers in /run/NetworkManager/no-stub-resolv.conf if the /etc/resolv.conf file only contains a localhost server. ([#14220](https://github.com/containers/podman/pull/14220), [@Luap99](https://github.com/Luap99))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
+ - The HTTP handler shows the memory limit as specified at creation time ([#14677](https://github.com/containers/podman/pull/14677), [@giuseppe](https://github.com/giuseppe))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
+ - User enables to remove unused networks using podman system prune command. ([#14556](https://github.com/containers/podman/pull/14556), [@sstosh](https://github.com/sstosh))
  - `podman auto-update` will now create an event. ([#14292](https://github.com/containers/podman/pull/14292), [@vrothberg](https://github.com/vrothberg))
 
 ## Dependencies
@@ -184,6 +190,7 @@ The release notes have been generated for the commit range
 - github.com/containers/ocicrypt: [v1.1.2 → v1.1.5](https://github.com/containers/ocicrypt/compare/v1.1.2...v1.1.5)
 - github.com/containers/storage: [v1.38.0 → 7df6428](https://github.com/containers/storage/compare/v1.38.0...7df6428)
 - github.com/coreos/etcd: [v3.3.10+incompatible → v3.3.13+incompatible](https://github.com/coreos/etcd/compare/v3.3.10...v3.3.13)
+- github.com/cpuguy83/go-md2man/v2: [v2.0.1 → v2.0.2](https://github.com/cpuguy83/go-md2man/v2/compare/v2.0.1...v2.0.2)
 - github.com/docker/distribution: [v2.7.1+incompatible → v2.8.1+incompatible](https://github.com/docker/distribution/compare/v2.7.1...v2.8.1)
 - github.com/docker/docker: [v20.10.12+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.12...v20.10.17)
 - github.com/docker/go-connections: [v0.4.0 → 58542c7](https://github.com/docker/go-connections/compare/v0.4.0...58542c7)
@@ -242,9 +249,10 @@ The release notes have been generated for the commit range
 - github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
 - github.com/sergi/go-diff: [v1.1.0 → v1.2.0](https://github.com/sergi/go-diff/compare/v1.1.0...v1.2.0)
 - github.com/soheilhy/cmux: [v0.1.4 → v0.1.5](https://github.com/soheilhy/cmux/compare/v0.1.4...v0.1.5)
-- github.com/spf13/cobra: [v1.3.0 → v1.4.0](https://github.com/spf13/cobra/compare/v1.3.0...v1.4.0)
+- github.com/spf13/cobra: [v1.3.0 → v1.5.0](https://github.com/spf13/cobra/compare/v1.3.0...v1.5.0)
 - github.com/spf13/viper: [v1.10.0 → v1.9.0](https://github.com/spf13/viper/compare/v1.10.0...v1.9.0)
-- github.com/stretchr/testify: [v1.7.0 → v1.7.2](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.2)
+- github.com/stretchr/objx: [v0.2.0 → v0.4.0](https://github.com/stretchr/objx/compare/v0.2.0...v0.4.0)
+- github.com/stretchr/testify: [v1.7.0 → v1.7.4](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.4)
 - github.com/tmc/grpc-websocket-proxy: [3cfed13 → e5319fd](https://github.com/tmc/grpc-websocket-proxy/compare/3cfed13...e5319fd)
 - github.com/tv42/httpunix: [b75d861 → 2ba4b9c](https://github.com/tv42/httpunix/compare/b75d861...2ba4b9c)
 - github.com/urfave/cli/v2: [v2.3.0 → v2.5.1](https://github.com/urfave/cli/v2/compare/v2.3.0...v2.5.1)
