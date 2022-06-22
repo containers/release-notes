@@ -12,7 +12,7 @@
 # buildah main
 
 The release notes have been generated for the commit range
-[v1.26.0...5745cac703871b1e3873c1d14c29316a0cd91da7](https://github.com/containers/buildah/compare/v1.26.0...5745cac703871b1e3873c1d14c29316a0cd91da7) on Sat Jun 18 05:54:12 AM MDT 2022.
+[v1.26.0...d21e472bbb689b23b094d1165da90ea606b974f3](https://github.com/containers/buildah/compare/v1.26.0...d21e472bbb689b23b094d1165da90ea606b974f3) on Wed Jun 22 07:56:57 AM MDT 2022.
 
 # Changelog since v1.26.0
 
@@ -43,6 +43,7 @@ _Nothing has changed._
 - github.com/containers/common: [v0.48.0 → dbecabb](https://github.com/containers/common/compare/v0.48.0...dbecabb)
 - github.com/containers/image/v5: [v5.21.1 → e594853](https://github.com/containers/image/v5/compare/v5.21.1...e594853)
 - github.com/containers/storage: [v1.40.2 → 8951d01](https://github.com/containers/storage/compare/v1.40.2...8951d01)
+- github.com/cpuguy83/go-md2man/v2: [v2.0.1 → v2.0.2](https://github.com/cpuguy83/go-md2man/v2/compare/v2.0.1...v2.0.2)
 - github.com/docker/docker: [v20.10.14+incompatible → v20.10.17+incompatible](https://github.com/docker/docker/compare/v20.10.14...v20.10.17)
 - github.com/frankban/quicktest: [v1.11.3 → v1.14.0](https://github.com/frankban/quicktest/compare/v1.11.3...v1.14.0)
 - github.com/fsouza/go-dockerclient: [v1.7.11 → v1.8.1](https://github.com/fsouza/go-dockerclient/compare/v1.7.11...v1.8.1)
@@ -55,6 +56,7 @@ _Nothing has changed._
 - github.com/rogpeppe/go-internal: [v1.3.0 → v1.6.1](https://github.com/rogpeppe/go-internal/compare/v1.3.0...v1.6.1)
 - github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
 - github.com/sirupsen/logrus: [v1.4.2 → v1.8.1](https://github.com/sirupsen/logrus/compare/v1.4.2...v1.8.1)
+- github.com/spf13/cobra: [v1.4.0 → v1.5.0](https://github.com/spf13/cobra/compare/v1.4.0...v1.5.0)
 - github.com/stretchr/testify: [v1.7.1 → v1.7.2](https://github.com/stretchr/testify/compare/v1.7.1...v1.7.2)
 - github.com/urfave/cli: [v1.22.4 → v1.22.9](https://github.com/urfave/cli/compare/v1.22.4...v1.22.9)
 - golang.org/x/sys: 9388b58 → bc2c85a
