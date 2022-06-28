@@ -12,7 +12,7 @@
 # buildah main
 
 The release notes have been generated for the commit range
-[v1.26.0...d21e472bbb689b23b094d1165da90ea606b974f3](https://github.com/containers/buildah/compare/v1.26.0...d21e472bbb689b23b094d1165da90ea606b974f3) on Wed Jun 22 07:56:57 AM MDT 2022.
+[v1.26.0...281c62917e586b6f9bcd4cafd4de3161349972f1](https://github.com/containers/buildah/compare/v1.26.0...281c62917e586b6f9bcd4cafd4de3161349972f1) on Tue Jun 28 05:47:58 AM MDT 2022.
 
 # Changelog since v1.26.0
 
@@ -28,6 +28,7 @@ The release notes have been generated for the commit range
  - Add a new `NoOverwriteNonDirDir` option to `copier.Put` to prevent a non-directory from being overwritten by a directory. ([#4043](https://github.com/containers/buildah/pull/4043), [@vrothberg](https://github.com/vrothberg))
  - Add support for --logsplit which allows users to split logfile with build logs for each platform ([#4034](https://github.com/containers/buildah/pull/4034), [@flouthoc](https://github.com/flouthoc))
  - Buildah now supports renaming devices while performing a build ([#4014](https://github.com/containers/buildah/pull/4014), [@flouthoc](https://github.com/flouthoc))
+ - This change introduces support to make use of the recently fixed subid library check for Fedora and EL-family builds. ([#4078](https://github.com/containers/buildah/pull/4078), [@mhjacks](https://github.com/mhjacks))
 
 ## Dependencies
 
@@ -57,7 +58,8 @@ _Nothing has changed._
 - github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
 - github.com/sirupsen/logrus: [v1.4.2 → v1.8.1](https://github.com/sirupsen/logrus/compare/v1.4.2...v1.8.1)
 - github.com/spf13/cobra: [v1.4.0 → v1.5.0](https://github.com/spf13/cobra/compare/v1.4.0...v1.5.0)
-- github.com/stretchr/testify: [v1.7.1 → v1.7.2](https://github.com/stretchr/testify/compare/v1.7.1...v1.7.2)
+- github.com/stretchr/objx: [v0.2.0 → v0.4.0](https://github.com/stretchr/objx/compare/v0.2.0...v0.4.0)
+- github.com/stretchr/testify: [v1.7.1 → v1.7.5](https://github.com/stretchr/testify/compare/v1.7.1...v1.7.5)
 - github.com/urfave/cli: [v1.22.4 → v1.22.9](https://github.com/urfave/cli/compare/v1.22.4...v1.22.9)
 - golang.org/x/sys: 9388b58 → bc2c85a
 - golang.org/x/term: 03fcf44 → 065cf7b
