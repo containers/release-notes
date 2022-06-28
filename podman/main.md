@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...2382955c6a88e506ce6d85477c8c68bd24859bdd](https://github.com/containers/podman/compare/v4.0.0-rc2...2382955c6a88e506ce6d85477c8c68bd24859bdd) on Wed Jun 22 07:50:31 AM MDT 2022.
+[v4.0.0-rc2...a5750989752d03717676adc3e5ad52547afab421](https://github.com/containers/podman/compare/v4.0.0-rc2...a5750989752d03717676adc3e5ad52547afab421) on Tue Jun 28 05:41:32 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -57,6 +57,8 @@ The release notes have been generated for the commit range
  - The default network mode is now assigned by the server and not the client. ([#14436](https://github.com/containers/podman/pull/14436), [@Luap99](https://github.com/Luap99))
 
 ### Uncategorized
+ - A new `podman volume reload` command was added to sync the state from volume plugins into the libpod db. ([#14713](https://github.com/containers/podman/pull/14713), [@Luap99](https://github.com/Luap99))
+ - Added Regexp support to filtering volumes by name ([#14597](https://github.com/containers/podman/pull/14597), [@boaz0](https://github.com/boaz0))
  - Added support for `network ls --filter dangling=true/false` ([#14643](https://github.com/containers/podman/pull/14643), [@clobrano](https://github.com/clobrano))
  - Adds support for build which allows using build-cache with --squash-all using --layers
   - Adds support for new buildah feature --build-context where users can specify additional build context
@@ -70,6 +72,7 @@ The release notes have been generated for the commit range
  - Changed help message from megabytes to mebibytes. ([#14467](https://github.com/containers/podman/pull/14467), [@karthikelango137](https://github.com/karthikelango137))
  - Containers created by system service running under systemd survive after the Podman daemon is stopped ([#14596](https://github.com/containers/podman/pull/14596), [@giuseppe](https://github.com/giuseppe))
  - Enables additional build context for podman-remote and macOS using --build-context ([#14453](https://github.com/containers/podman/pull/14453), [@flouthoc](https://github.com/flouthoc))
+ - Fix a bug in the wait logic to enable Podman on Gitlab runner. ([#14685](https://github.com/containers/podman/pull/14685), [@mheon](https://github.com/mheon))
  - Fix a bug where `--file-locks` flag is ignored in `podman container restore` so that file locks checkpointed by `podman container checkpoint --file-locks` are not restored. ([#14542](https://github.com/containers/podman/pull/14542), [@hshiina](https://github.com/hshiina))
  - Fix a bug where `podman cp` would overwrite directories with non-directories and vice versa.  A new `--overwrite` flag allows for opting into the old behavior if needed. ([#14526](https://github.com/containers/podman/pull/14526), [@vrothberg](https://github.com/vrothberg))
  - Fix an issue in `podman image mount` where the pretty table for multiple images was not printed.
@@ -82,6 +85,7 @@ The release notes have been generated for the commit range
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the /libpod/containers/json endpoint did not return the application/json content type header when the container list is empty. ([#14662](https://github.com/containers/podman/pull/14662), [@Luap99](https://github.com/Luap99))
+ - Fixed a bug where the API nor `podman events` were generating health_status events (#13493) ([#14705](https://github.com/containers/podman/pull/14705), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the `podman system reset` command could race against other Podman commands. ([#14466](https://github.com/containers/podman/pull/14466), [@mheon](https://github.com/mheon))
  - Fixed a bug where using the `podman stats` command on a non-running container would return an error instead of zeroed values ([#14580](https://github.com/containers/podman/pull/14580), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed running machine start twice at the same time resulting in failure for both ([#14469](https://github.com/containers/podman/pull/14469), [@shanesmith](https://github.com/shanesmith))
@@ -105,12 +109,15 @@ The release notes have been generated for the commit range
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Podman will now check for nameservers in /run/NetworkManager/no-stub-resolv.conf if the /etc/resolv.conf file only contains a localhost server. ([#14220](https://github.com/containers/podman/pull/14220), [@Luap99](https://github.com/Luap99))
+ - Relative volume paths now supported ([#14687](https://github.com/containers/podman/pull/14687), [@cdoern](https://github.com/cdoern))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
  - The HTTP handler shows the memory limit as specified at creation time ([#14677](https://github.com/containers/podman/pull/14677), [@giuseppe](https://github.com/giuseppe))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
  - User enables to remove unused networks using podman system prune command. ([#14556](https://github.com/containers/podman/pull/14556), [@sstosh](https://github.com/sstosh))
+ - Users will be able to see a tangible change when settings resource limits on pods ([#14654](https://github.com/containers/podman/pull/14654), [@cdoern](https://github.com/cdoern))
  - `podman auto-update` will now create an event. ([#14292](https://github.com/containers/podman/pull/14292), [@vrothberg](https://github.com/vrothberg))
+ - `podman machine init --now` now respects the proxy environment variables like `podman machine start`. ([#14665](https://github.com/containers/podman/pull/14665), [@Luap99](https://github.com/Luap99))
 
 ## Dependencies
 
@@ -184,7 +191,7 @@ The release notes have been generated for the commit range
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
 - github.com/containers/buildah: [d744ebc → e66309e](https://github.com/containers/buildah/compare/d744ebc...e66309e)
-- github.com/containers/common: [0e7aca7 → dbecabb](https://github.com/containers/common/compare/0e7aca7...dbecabb)
+- github.com/containers/common: [0e7aca7 → 722a80e](https://github.com/containers/common/compare/0e7aca7...722a80e)
 - github.com/containers/image/v5: [v5.18.0 → 929f14a](https://github.com/containers/image/v5/compare/v5.18.0...929f14a)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
 - github.com/containers/ocicrypt: [v1.1.2 → v1.1.5](https://github.com/containers/ocicrypt/compare/v1.1.2...v1.1.5)
@@ -236,7 +243,7 @@ The release notes have been generated for the commit range
 - github.com/moby/sys/symlink: [v0.1.0 → v0.2.0](https://github.com/moby/sys/symlink/compare/v0.1.0...v0.2.0)
 - github.com/mwitkow/go-conntrack: [cc309e4 → 2f06839](https://github.com/mwitkow/go-conntrack/compare/cc309e4...2f06839)
 - github.com/onsi/gomega: [v1.16.0 → v1.19.0](https://github.com/onsi/gomega/compare/v1.16.0...v1.19.0)
-- github.com/opencontainers/runc: [v1.1.0 → v1.1.3](https://github.com/opencontainers/runc/compare/v1.1.0...v1.1.3)
+- github.com/opencontainers/runc: [v1.1.0 → 8b9452f](https://github.com/opencontainers/runc/compare/v1.1.0...8b9452f)
 - github.com/opencontainers/selinux: [v1.10.0 → v1.10.1](https://github.com/opencontainers/selinux/compare/v1.10.0...v1.10.1)
 - github.com/openshift/imagebuilder: [87f3e48 → 009dbc6](https://github.com/openshift/imagebuilder/compare/87f3e48...009dbc6)
 - github.com/ostreedev/ostree-go: [759a8c1 → 719684c](https://github.com/ostreedev/ostree-go/compare/759a8c1...719684c)
@@ -246,13 +253,13 @@ The release notes have been generated for the commit range
 - github.com/prometheus/procfs: [v0.6.0 → v0.7.3](https://github.com/prometheus/procfs/compare/v0.6.0...v0.7.3)
 - github.com/rootless-containers/rootlesskit: [v0.14.6 → v1.0.1](https://github.com/rootless-containers/rootlesskit/compare/v0.14.6...v1.0.1)
 - github.com/sagikazarmark/crypt: [v0.3.0 → v0.1.0](https://github.com/sagikazarmark/crypt/compare/v0.3.0...v0.1.0)
-- github.com/seccomp/libseccomp-golang: [3879420 → f33da4d](https://github.com/seccomp/libseccomp-golang/compare/3879420...f33da4d)
+- github.com/seccomp/libseccomp-golang: [3879420 → v0.10.0](https://github.com/seccomp/libseccomp-golang/compare/3879420...v0.10.0)
 - github.com/sergi/go-diff: [v1.1.0 → v1.2.0](https://github.com/sergi/go-diff/compare/v1.1.0...v1.2.0)
 - github.com/soheilhy/cmux: [v0.1.4 → v0.1.5](https://github.com/soheilhy/cmux/compare/v0.1.4...v0.1.5)
 - github.com/spf13/cobra: [v1.3.0 → v1.5.0](https://github.com/spf13/cobra/compare/v1.3.0...v1.5.0)
 - github.com/spf13/viper: [v1.10.0 → v1.9.0](https://github.com/spf13/viper/compare/v1.10.0...v1.9.0)
 - github.com/stretchr/objx: [v0.2.0 → v0.4.0](https://github.com/stretchr/objx/compare/v0.2.0...v0.4.0)
-- github.com/stretchr/testify: [v1.7.0 → v1.7.4](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.4)
+- github.com/stretchr/testify: [v1.7.0 → v1.7.5](https://github.com/stretchr/testify/compare/v1.7.0...v1.7.5)
 - github.com/tmc/grpc-websocket-proxy: [3cfed13 → e5319fd](https://github.com/tmc/grpc-websocket-proxy/compare/3cfed13...e5319fd)
 - github.com/tv42/httpunix: [b75d861 → 2ba4b9c](https://github.com/tv42/httpunix/compare/b75d861...2ba4b9c)
 - github.com/urfave/cli/v2: [v2.3.0 → v2.5.1](https://github.com/urfave/cli/v2/compare/v2.3.0...v2.5.1)
@@ -291,6 +298,7 @@ The release notes have been generated for the commit range
 
 ### Removed
 - github.com/DataDog/datadog-go: [v3.2.0+incompatible](https://github.com/DataDog/datadog-go/tree/v3.2.0)
+- github.com/checkpoint-restore/go-criu/v4: [v4.1.0](https://github.com/checkpoint-restore/go-criu/v4/tree/v4.1.0)
 - github.com/circonus-labs/circonus-gometrics: [v2.3.1+incompatible](https://github.com/circonus-labs/circonus-gometrics/tree/v2.3.1)
 - github.com/circonus-labs/circonusllhist: [v0.1.3](https://github.com/circonus-labs/circonusllhist/tree/v0.1.3)
 - github.com/hashicorp/go-retryablehttp: [v0.5.3](https://github.com/hashicorp/go-retryablehttp/tree/v0.5.3)
