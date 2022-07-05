@@ -8,7 +8,7 @@
 # buildah release-1.26
 
 The release notes have been generated for the commit range
-[v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54](https://github.com/containers/buildah/compare/v1.26.1...9916cc453e7e95f04ed671f0ede57ceccb106e54) on Wed Jun  1 12:07:37 PM MDT 2022.
+[v1.26.1...19159983d3ecdb16df97eb4c887902363066b474](https://github.com/containers/buildah/compare/v1.26.1...19159983d3ecdb16df97eb4c887902363066b474) on Tue Jul  5 10:33:02 AM MDT 2022.
 
 # Changelog since v1.26.1
 
@@ -18,7 +18,7 @@ The release notes have been generated for the commit range
 _Nothing has changed._
 
 ### Changed
-_Nothing has changed._
+- github.com/containers/storage: [v1.40.2 → v1.40.3](https://github.com/containers/storage/compare/v1.40.2...v1.40.3)
 
 ### Removed
 _Nothing has changed._
