@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...39fc5d1f4f26f82ed1ca23d97f43924335c4c529](https://github.com/containers/podman/compare/v4.0.0-rc2...39fc5d1f4f26f82ed1ca23d97f43924335c4c529) on Tue Jul  5 10:27:05 AM MDT 2022.
+[v4.0.0-rc2...49df3cc5cb7e6a1d9e28cacfa86562abbdf48fd9](https://github.com/containers/podman/compare/v4.0.0-rc2...49df3cc5cb7e6a1d9e28cacfa86562abbdf48fd9) on Wed Jul  6 05:40:16 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -125,6 +125,7 @@ The release notes have been generated for the commit range
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Podman parses correctly the wildcard for the device major number to `--device-cgroup-rule` ([#14795](https://github.com/containers/podman/pull/14795), [@giuseppe](https://github.com/giuseppe))
+ - Podman pod unpause only shows paused pods when using autocomplete ([#14370](https://github.com/containers/podman/pull/14370), [@umohnani8](https://github.com/umohnani8))
  - Podman system service automatically creates a sub-cgroup when running in the root cgroup ([#14787](https://github.com/containers/podman/pull/14787), [@giuseppe](https://github.com/giuseppe))
  - Podman will now check for nameservers in /run/NetworkManager/no-stub-resolv.conf if the /etc/resolv.conf file only contains a localhost server. ([#14220](https://github.com/containers/podman/pull/14220), [@Luap99](https://github.com/Luap99))
  - Podman-remote manifest rm now actually removes only manifest list and not image
