@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...49df3cc5cb7e6a1d9e28cacfa86562abbdf48fd9](https://github.com/containers/podman/compare/v4.0.0-rc2...49df3cc5cb7e6a1d9e28cacfa86562abbdf48fd9) on Wed Jul  6 05:40:16 AM MDT 2022.
+[v4.0.0-rc2...3691c9b1ba8e63f56b5cc36cdb1670fcfbdba0a1](https://github.com/containers/podman/compare/v4.0.0-rc2...3691c9b1ba8e63f56b5cc36cdb1670fcfbdba0a1) on Mon Jul 11 05:54:36 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -54,10 +54,13 @@ The release notes have been generated for the commit range
  - Podman stats now works correctly with custom network interface names and when network disconnect was used. ([#14421](https://github.com/containers/podman/pull/14421), [@Luap99](https://github.com/Luap99))
  - Podman system reset now properly deletes all podman machines and associated files. ([#14066](https://github.com/containers/podman/pull/14066), [@ashley-cui](https://github.com/ashley-cui))
  - Podman-remote no longer joins user NS ([#14010](https://github.com/containers/podman/pull/14010), [@vrothberg](https://github.com/vrothberg))
+ - REST API libpod/pods/stats endpoint has two new params: stream and delay ([#14825](https://github.com/containers/podman/pull/14825), [@jmguzik](https://github.com/jmguzik))
  - The default network mode is now assigned by the server and not the client. ([#14436](https://github.com/containers/podman/pull/14436), [@Luap99](https://github.com/Luap99))
 
 ### Uncategorized
  - A new `podman volume reload` command was added to sync the state from volume plugins into the libpod db. ([#14713](https://github.com/containers/podman/pull/14713), [@Luap99](https://github.com/Luap99))
+ - Add podman machine info command, which displays info about the machine
+  host as well as version info. ([#14762](https://github.com/containers/podman/pull/14762), [@ashley-cui](https://github.com/ashley-cui))
  - Add supports for running containers from manifest list with --platform ([#14827](https://github.com/containers/podman/pull/14827), [@flouthoc](https://github.com/flouthoc))
  - Add the volume creation option --opt=o=timeout=INT allowing users to specify a volume specific creation timeout for custom drivers. ([#14449](https://github.com/containers/podman/pull/14449), [@cdoern](https://github.com/cdoern))
  - Added Regexp support to filtering volumes by name ([#14597](https://github.com/containers/podman/pull/14597), [@boaz0](https://github.com/boaz0))
@@ -84,6 +87,7 @@ The release notes have been generated for the commit range
   - Add auto-completion to `podman search --filter`. ([#14341](https://github.com/containers/podman/pull/14341), [@vrothberg](https://github.com/vrothberg))
  - Fix interrupting a machine start leaves the machine unstartable ([#14610](https://github.com/containers/podman/pull/14610), [@shanesmith](https://github.com/shanesmith))
  - Fix memory limit failures when running under a root cgroup ([#14308](https://github.com/containers/podman/pull/14308), [@n1hility](https://github.com/n1hility))
+ - Fix network inspect comapt API w.r.t netmask of SecondaryIPAddresses/SecondaryIPv6Addresses ([#14673](https://github.com/containers/podman/pull/14673), [@idleroamer](https://github.com/idleroamer))
  - Fix: #14416 : `machine init` fails when ran from C:\Windows\System32 on Windows ([#14570](https://github.com/containers/podman/pull/14570), [@Clivar](https://github.com/Clivar))
  - Fixed a bug where Podman could print error messages when signals were forwarded to a container via `--sig-proxy` to a container as the container process exited. ([#14533](https://github.com/containers/podman/pull/14533), [@mheon](https://github.com/mheon))
  - Fixed a bug where Podman with docker-compose did not update the network MTU ([#14534](https://github.com/containers/podman/pull/14534), [@jakecorrenti](https://github.com/jakecorrenti))
@@ -91,6 +95,7 @@ The release notes have been generated for the commit range
  - Fixed a bug where `podman system df --format "{{ json . }}"` would not output the `Size` and `Reclaimable` fields (#14769) ([#14805](https://github.com/containers/podman/pull/14805), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where disabling healthchecks in a docker-compose.yml file was improperly handled (#14493) ([#14626](https://github.com/containers/podman/pull/14626), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
+ - Fixed a bug where podman machine start failed to start the qemu VM when the machine name starts with a number. ([#14850](https://github.com/containers/podman/pull/14850), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the /libpod/containers/json endpoint did not return the application/json content type header when the container list is empty. ([#14662](https://github.com/containers/podman/pull/14662), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where the API nor `podman events` were generating health_status events (#13493) ([#14705](https://github.com/containers/podman/pull/14705), [@jakecorrenti](https://github.com/jakecorrenti))
@@ -107,6 +112,7 @@ The release notes have been generated for the commit range
  - Implement Proxy support on Windows ([#14806](https://github.com/containers/podman/pull/14806), [@n1hility](https://github.com/n1hility))
  - Implement podman pod create --memory which allows users to set a memory limit for all ctrs in a pod. ([#14802](https://github.com/containers/podman/pull/14802), [@cdoern](https://github.com/cdoern))
  - Improve shell completion for the --format option. ([#14216](https://github.com/containers/podman/pull/14216), [@Luap99](https://github.com/Luap99))
+ - Improve the documentation of pull policies for `podman-{build,create,run}`. ([#14870](https://github.com/containers/podman/pull/14870), [@vrothberg](https://github.com/vrothberg))
  - Improved autocompletion for some commands ([#14053](https://github.com/containers/podman/pull/14053), [@Luap99](https://github.com/Luap99))
  - Improved handling for the --format option shell completion. ([#14263](https://github.com/containers/podman/pull/14263), [@Luap99](https://github.com/Luap99))
  - Improved shell completion for podman create/run --stop-signal. ([#14330](https://github.com/containers/podman/pull/14330), [@Luap99](https://github.com/Luap99))
@@ -127,6 +133,7 @@ The release notes have been generated for the commit range
  - Podman parses correctly the wildcard for the device major number to `--device-cgroup-rule` ([#14795](https://github.com/containers/podman/pull/14795), [@giuseppe](https://github.com/giuseppe))
  - Podman pod unpause only shows paused pods when using autocomplete ([#14370](https://github.com/containers/podman/pull/14370), [@umohnani8](https://github.com/umohnani8))
  - Podman system service automatically creates a sub-cgroup when running in the root cgroup ([#14787](https://github.com/containers/podman/pull/14787), [@giuseppe](https://github.com/giuseppe))
+ - Podman wait an now take multiple --condition flags ([#14818](https://github.com/containers/podman/pull/14818), [@rhatdan](https://github.com/rhatdan))
  - Podman will now check for nameservers in /run/NetworkManager/no-stub-resolv.conf if the /etc/resolv.conf file only contains a localhost server. ([#14220](https://github.com/containers/podman/pull/14220), [@Luap99](https://github.com/Luap99))
  - Podman-remote manifest rm now actually removes only manifest list and not image
   - libpod REST API for image removal now supports additional LookupManifest parameter
@@ -134,12 +141,16 @@ The release notes have been generated for the commit range
  - Relative volume paths now supported ([#14687](https://github.com/containers/podman/pull/14687), [@cdoern](https://github.com/cdoern))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
  - Silence setlocale warning in machine ssh ([#14824](https://github.com/containers/podman/pull/14824), [@shanesmith](https://github.com/shanesmith))
+ - Support specification of the 9p security model for `podman machine` volumes ([#13784](https://github.com/containers/podman/issues/13784)). ([#14803](https://github.com/containers/podman/pull/14803), [@bugfood](https://github.com/bugfood))
+ - The Compat API now supports the v1.41 API. ([#14219](https://github.com/containers/podman/pull/14219), [@mheon](https://github.com/mheon))
  - The HTTP handler shows the memory limit as specified at creation time ([#14677](https://github.com/containers/podman/pull/14677), [@giuseppe](https://github.com/giuseppe))
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
  - The `podman machine stop` command on macOS now waits for the machine to be completely stopped. ([#14666](https://github.com/containers/podman/pull/14666), [@shanesmith](https://github.com/shanesmith))
  - This fix prevents the OCI runtime directory from remaining. It also prevents other bugs occurring. ([#14720](https://github.com/containers/podman/pull/14720), [@sstosh](https://github.com/sstosh))
+ - Update supported kube fields for configMap and deployment kind in play kube docs ([#14842](https://github.com/containers/podman/pull/14842), [@umohnani8](https://github.com/umohnani8))
  - User enables to remove unused networks using podman system prune command. ([#14556](https://github.com/containers/podman/pull/14556), [@sstosh](https://github.com/sstosh))
+ - Users can now specify the --uts option when creating pods, specifying a pod wide uts mode for all containers. ([#14501](https://github.com/containers/podman/pull/14501), [@cdoern](https://github.com/cdoern))
  - Users will be able to see a tangible change when settings resource limits on pods ([#14654](https://github.com/containers/podman/pull/14654), [@cdoern](https://github.com/cdoern))
  - `podman auto-update` will now create an event. ([#14292](https://github.com/containers/podman/pull/14292), [@vrothberg](https://github.com/vrothberg))
  - `podman machine init --now` now respects the proxy environment variables like `podman machine start`. ([#14665](https://github.com/containers/podman/pull/14665), [@Luap99](https://github.com/Luap99))
@@ -216,7 +227,7 @@ The release notes have been generated for the commit range
 - github.com/containernetworking/cni: [v1.0.1 → v1.1.1](https://github.com/containernetworking/cni/compare/v1.0.1...v1.1.1)
 - github.com/containernetworking/plugins: [v1.0.1 → v1.1.1](https://github.com/containernetworking/plugins/compare/v1.0.1...v1.1.1)
 - github.com/containers/buildah: [d744ebc → e66309e](https://github.com/containers/buildah/compare/d744ebc...e66309e)
-- github.com/containers/common: [0e7aca7 → 178929c](https://github.com/containers/common/compare/0e7aca7...178929c)
+- github.com/containers/common: [0e7aca7 → dd1c331](https://github.com/containers/common/compare/0e7aca7...dd1c331)
 - github.com/containers/image/v5: [v5.18.0 → 929f14a](https://github.com/containers/image/v5/compare/v5.18.0...929f14a)
 - github.com/containers/libtrust: [14b9617 → 9c3a6c2](https://github.com/containers/libtrust/compare/14b9617...9c3a6c2)
 - github.com/containers/ocicrypt: [v1.1.2 → v1.1.5](https://github.com/containers/ocicrypt/compare/v1.1.2...v1.1.5)
