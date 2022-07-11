@@ -2,6 +2,8 @@
 - [Changelog since v1.26.0](#changelog-since-v1260)
   - [Changes by Kind](#changes-by-kind)
     - [Other](#other)
+    - [Feature](#feature)
+    - [Documentation](#documentation)
     - [Bug or Regression](#bug-or-regression)
     - [Uncategorized](#uncategorized)
   - [Dependencies](#dependencies)
@@ -12,7 +14,7 @@
 # buildah main
 
 The release notes have been generated for the commit range
-[v1.26.0...c8e11933054370dfc508df1ac17634d6d56ae009](https://github.com/containers/buildah/compare/v1.26.0...c8e11933054370dfc508df1ac17634d6d56ae009) on Tue Jul  5 10:33:25 AM MDT 2022.
+[v1.26.0...e2bf34e9919345339620ee895b17e295f3db6ed5](https://github.com/containers/buildah/compare/v1.26.0...e2bf34e9919345339620ee895b17e295f3db6ed5) on Mon Jul 11 06:00:48 AM MDT 2022.
 
 # Changelog since v1.26.0
 
@@ -21,6 +23,12 @@ The release notes have been generated for the commit range
 ### Other
  - Implement limited support for macOS (darwin) allowing users to perform some image operations (`from`, `rm`, `mount`, `umount`...) on this OS. ([#4048](https://github.com/containers/buildah/pull/4048), [@slp](https://github.com/slp))
 
+### Feature
+ - The default errno value is honored when using seccomp with --isolation=chroot ([#4099](https://github.com/containers/buildah/pull/4099), [@giuseppe](https://github.com/giuseppe))
+
+### Documentation
+ - Improve the documentation of `buildah pull --policy`. ([#4098](https://github.com/containers/buildah/pull/4098), [@vrothberg](https://github.com/vrothberg))
+
 ### Bug or Regression
  - Buildah will now default correctly to google nameservers in /etc/resolv.conf if no servers are found in the hosts resolv.conf or otherwise specified via config ([#3986](https://github.com/containers/buildah/pull/3986), [@Luap99](https://github.com/Luap99))
 
@@ -28,6 +36,7 @@ The release notes have been generated for the commit range
  - Add a new `NoOverwriteNonDirDir` option to `copier.Put` to prevent a non-directory from being overwritten by a directory. ([#4043](https://github.com/containers/buildah/pull/4043), [@vrothberg](https://github.com/vrothberg))
  - Add support for --logsplit which allows users to split logfile with build logs for each platform ([#4034](https://github.com/containers/buildah/pull/4034), [@flouthoc](https://github.com/flouthoc))
  - Buildah now supports renaming devices while performing a build ([#4014](https://github.com/containers/buildah/pull/4014), [@flouthoc](https://github.com/flouthoc))
+ - Fix: users can generate build output of image even when contents of build container is not commited ([#4097](https://github.com/containers/buildah/pull/4097), [@flouthoc](https://github.com/flouthoc))
  - This change introduces support to make use of the recently fixed subid library check for Fedora and EL-family builds. ([#4078](https://github.com/containers/buildah/pull/4078), [@mhjacks](https://github.com/mhjacks))
 
 ## Dependencies
