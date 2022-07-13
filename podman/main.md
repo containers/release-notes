@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...3691c9b1ba8e63f56b5cc36cdb1670fcfbdba0a1](https://github.com/containers/podman/compare/v4.0.0-rc2...3691c9b1ba8e63f56b5cc36cdb1670fcfbdba0a1) on Mon Jul 11 05:54:36 AM MDT 2022.
+[v4.0.0-rc2...5f8d08d593d625beaa224c48e7da945c4f90ea48](https://github.com/containers/podman/compare/v4.0.0-rc2...5f8d08d593d625beaa224c48e7da945c4f90ea48) on Wed Jul 13 11:52:15 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -61,6 +61,7 @@ The release notes have been generated for the commit range
  - A new `podman volume reload` command was added to sync the state from volume plugins into the libpod db. ([#14713](https://github.com/containers/podman/pull/14713), [@Luap99](https://github.com/Luap99))
  - Add podman machine info command, which displays info about the machine
   host as well as version info. ([#14762](https://github.com/containers/podman/pull/14762), [@ashley-cui](https://github.com/ashley-cui))
+ - Add support for -c as an alias for --cpu-shares to be compatible with Docker. ([#14916](https://github.com/containers/podman/pull/14916), [@rhatdan](https://github.com/rhatdan))
  - Add supports for running containers from manifest list with --platform ([#14827](https://github.com/containers/podman/pull/14827), [@flouthoc](https://github.com/flouthoc))
  - Add the volume creation option --opt=o=timeout=INT allowing users to specify a volume specific creation timeout for custom drivers. ([#14449](https://github.com/containers/podman/pull/14449), [@cdoern](https://github.com/cdoern))
  - Added Regexp support to filtering volumes by name ([#14597](https://github.com/containers/podman/pull/14597), [@boaz0](https://github.com/boaz0))
@@ -96,6 +97,7 @@ The release notes have been generated for the commit range
  - Fixed a bug where disabling healthchecks in a docker-compose.yml file was improperly handled (#14493) ([#14626](https://github.com/containers/podman/pull/14626), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where podman machine start failed to start the qemu VM when the machine name starts with a number. ([#14850](https://github.com/containers/podman/pull/14850), [@Luap99](https://github.com/Luap99))
+ - Fixed a bug where podman machine with proxy variables could not be started more than once. ([#14893](https://github.com/containers/podman/pull/14893), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where privileged containers were not able to restart if the host devices changed. (#13899) ([#14483](https://github.com/containers/podman/pull/14483), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where the /libpod/containers/json endpoint did not return the application/json content type header when the container list is empty. ([#14662](https://github.com/containers/podman/pull/14662), [@Luap99](https://github.com/Luap99))
  - Fixed a bug where the API nor `podman events` were generating health_status events (#13493) ([#14705](https://github.com/containers/podman/pull/14705), [@jakecorrenti](https://github.com/jakecorrenti))
@@ -122,6 +124,7 @@ The release notes have been generated for the commit range
  - Now podman ps doesn't race with podman pod rm ([#14741](https://github.com/containers/podman/pull/14741), [@giuseppe](https://github.com/giuseppe))
  - Now volume create supports copy and nocopy to control whether files from the container image must be copied up to the newly created volume on the first run. ([#14734](https://github.com/containers/podman/pull/14734), [@giuseppe](https://github.com/giuseppe))
  - Podman --remote push now supports --remove-signatures ([#14560](https://github.com/containers/podman/pull/14560), [@rhatdan](https://github.com/rhatdan))
+ - Podman automatically creates a sub-cgroup and moves itself there when running inside a container ([#14904](https://github.com/containers/podman/pull/14904), [@giuseppe](https://github.com/giuseppe))
  - Podman build now supports the --omit-history option which eliminates the history field from images. 
   podman build now supports --logsplit which allows you to specify a directory for build logs when using multiple platforms.  One log for each platform will be generated in the specified directory. ([#14561](https://github.com/containers/podman/pull/14561), [@rhatdan](https://github.com/rhatdan))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
@@ -140,6 +143,7 @@ The release notes have been generated for the commit range
      which allows end-users to remove manifest instead of images. ([#14783](https://github.com/containers/podman/pull/14783), [@flouthoc](https://github.com/flouthoc))
  - Relative volume paths now supported ([#14687](https://github.com/containers/podman/pull/14687), [@cdoern](https://github.com/cdoern))
  - Results from `podman search` are now truncated by default ([#14047](https://github.com/containers/podman/pull/14047), [@vrothberg](https://github.com/vrothberg))
+ - Set ports and hostname correctly in the generated kube yaml. ([#14181](https://github.com/containers/podman/pull/14181), [@umohnani8](https://github.com/umohnani8))
  - Silence setlocale warning in machine ssh ([#14824](https://github.com/containers/podman/pull/14824), [@shanesmith](https://github.com/shanesmith))
  - Support specification of the 9p security model for `podman machine` volumes ([#13784](https://github.com/containers/podman/issues/13784)). ([#14803](https://github.com/containers/podman/pull/14803), [@bugfood](https://github.com/bugfood))
  - The Compat API now supports the v1.41 API. ([#14219](https://github.com/containers/podman/pull/14219), [@mheon](https://github.com/mheon))
