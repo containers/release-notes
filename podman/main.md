@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...5f8d08d593d625beaa224c48e7da945c4f90ea48](https://github.com/containers/podman/compare/v4.0.0-rc2...5f8d08d593d625beaa224c48e7da945c4f90ea48) on Wed Jul 13 11:52:15 AM MDT 2022.
+[v4.0.0-rc2...35e637daf894a8c2e01fe52a6a8768166ba38e7f](https://github.com/containers/podman/compare/v4.0.0-rc2...35e637daf894a8c2e01fe52a6a8768166ba38e7f) on Thu Jul 14 08:55:41 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -128,9 +128,11 @@ The release notes have been generated for the commit range
  - Podman build now supports the --omit-history option which eliminates the history field from images. 
   podman build now supports --logsplit which allows you to specify a directory for build logs when using multiple platforms.  One log for each platform will be generated in the specified directory. ([#14561](https://github.com/containers/podman/pull/14561), [@rhatdan](https://github.com/rhatdan))
  - Podman create/run --network host will use the correct nameservers from the host [#14055](https://github.com/containers/podman/issues/14055) ([#14062](https://github.com/containers/podman/pull/14062), [@Luap99](https://github.com/Luap99))
+ - Podman events now supports `-f` as an alias for `--filter` ([#14923](https://github.com/containers/podman/pull/14923), [@rhatdan](https://github.com/rhatdan))
  - Podman image scp API support added as well as image tagging. This fixes a bug in the syntax allowing users to specify a destination before a source. The API endpoint takes a source, destination, and quiet boolean all in the query itself. ([#14400](https://github.com/containers/podman/pull/14400), [@cdoern](https://github.com/cdoern))
  - Podman load CLI now mirrors docker load's imported image list output format ([#14460](https://github.com/containers/podman/pull/14460), [@cipherboy](https://github.com/cipherboy))
  - Podman logs will now correctly display all output when the last line did not end with an newline. ([#14477](https://github.com/containers/podman/pull/14477), [@Luap99](https://github.com/Luap99))
+ - Podman machine init on Windows now fetches an image with packages pre-installed ([#14919](https://github.com/containers/podman/pull/14919), [@gbraad](https://github.com/gbraad))
  - Podman machine inspect now shows the exported podman socket for external use. ([#14448](https://github.com/containers/podman/pull/14448), [@baude](https://github.com/baude))
  - Podman now supports image_volume_mode setting in containers.conf, which allows you to modify the system defaults for the podman run/create --image-volume option. ([#14301](https://github.com/containers/podman/pull/14301), [@rhatdan](https://github.com/rhatdan))
  - Podman parses correctly the wildcard for the device major number to `--device-cgroup-rule` ([#14795](https://github.com/containers/podman/pull/14795), [@giuseppe](https://github.com/giuseppe))
@@ -151,6 +153,9 @@ The release notes have been generated for the commit range
  - The RunAsUser, RunAsGroup, SupplementalGroups settings from the pod security context are honored. ([#14167](https://github.com/containers/podman/pull/14167), [@giuseppe](https://github.com/giuseppe))
  - The `podman kill` command now works on paused containers. ([#14329](https://github.com/containers/podman/pull/14329), [@mheon](https://github.com/mheon))
  - The `podman machine stop` command on macOS now waits for the machine to be completely stopped. ([#14666](https://github.com/containers/podman/pull/14666), [@shanesmith](https://github.com/shanesmith))
+ - The command "podman kube play" replaces the "podman play kube" command.
+  "podman play kube" can still be used in the same manner as before as it is now an alias of
+  "podman kube play". ([#14772](https://github.com/containers/podman/pull/14772), [@nicrowe00](https://github.com/nicrowe00))
  - This fix prevents the OCI runtime directory from remaining. It also prevents other bugs occurring. ([#14720](https://github.com/containers/podman/pull/14720), [@sstosh](https://github.com/sstosh))
  - Update supported kube fields for configMap and deployment kind in play kube docs ([#14842](https://github.com/containers/podman/pull/14842), [@umohnani8](https://github.com/umohnani8))
  - User enables to remove unused networks using podman system prune command. ([#14556](https://github.com/containers/podman/pull/14556), [@sstosh](https://github.com/sstosh))
