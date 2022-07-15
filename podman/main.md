@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...35e637daf894a8c2e01fe52a6a8768166ba38e7f](https://github.com/containers/podman/compare/v4.0.0-rc2...35e637daf894a8c2e01fe52a6a8768166ba38e7f) on Thu Jul 14 08:55:41 AM MDT 2022.
+[v4.0.0-rc2...b4c09bef668dd41e1cc55b8d379992e2d22714b7](https://github.com/containers/podman/compare/v4.0.0-rc2...b4c09bef668dd41e1cc55b8d379992e2d22714b7) on Fri Jul 15 06:17:11 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -59,6 +59,7 @@ The release notes have been generated for the commit range
 
 ### Uncategorized
  - A new `podman volume reload` command was added to sync the state from volume plugins into the libpod db. ([#14713](https://github.com/containers/podman/pull/14713), [@Luap99](https://github.com/Luap99))
+ - Add --filter flag for podman stop ([#14832](https://github.com/containers/podman/pull/14832), [@karthikelango137](https://github.com/karthikelango137))
  - Add podman machine info command, which displays info about the machine
   host as well as version info. ([#14762](https://github.com/containers/podman/pull/14762), [@ashley-cui](https://github.com/ashley-cui))
  - Add support for -c as an alias for --cpu-shares to be compatible with Docker. ([#14916](https://github.com/containers/podman/pull/14916), [@rhatdan](https://github.com/rhatdan))
@@ -170,6 +171,7 @@ The release notes have been generated for the commit range
 - github.com/AdaLogics/go-fuzz-headers: [6c3934b](https://github.com/AdaLogics/go-fuzz-headers/tree/6c3934b)
 - github.com/ProtonMail/go-crypto: [88bb529](https://github.com/ProtonMail/go-crypto/tree/88bb529)
 - github.com/benbjohnson/clock: [v1.0.3](https://github.com/benbjohnson/clock/tree/v1.0.3)
+- github.com/blang/semver/v4: [v4.0.0](https://github.com/blang/semver/v4/tree/v4.0.0)
 - github.com/certifi/gocertifi: [2c3bb06](https://github.com/certifi/gocertifi/tree/2c3bb06)
 - github.com/cockroachdb/errors: [v1.2.4](https://github.com/cockroachdb/errors/tree/v1.2.4)
 - github.com/cockroachdb/logtags: [eb05cc2](https://github.com/cockroachdb/logtags/tree/eb05cc2)
