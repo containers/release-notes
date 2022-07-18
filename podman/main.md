@@ -14,7 +14,7 @@
 # podman main
 
 The release notes have been generated for the commit range
-[v4.0.0-rc2...b4c09bef668dd41e1cc55b8d379992e2d22714b7](https://github.com/containers/podman/compare/v4.0.0-rc2...b4c09bef668dd41e1cc55b8d379992e2d22714b7) on Fri Jul 15 06:17:11 AM MDT 2022.
+[v4.0.0-rc2...5201ea8e4176dfc6cfd2816e5cf1c3fa0adf9587](https://github.com/containers/podman/compare/v4.0.0-rc2...5201ea8e4176dfc6cfd2816e5cf1c3fa0adf9587) on Mon Jul 18 05:59:41 AM MDT 2022.
 
 # Changelog since v4.0.0-rc2
 
@@ -66,6 +66,7 @@ The release notes have been generated for the commit range
  - Add supports for running containers from manifest list with --platform ([#14827](https://github.com/containers/podman/pull/14827), [@flouthoc](https://github.com/flouthoc))
  - Add the volume creation option --opt=o=timeout=INT allowing users to specify a volume specific creation timeout for custom drivers. ([#14449](https://github.com/containers/podman/pull/14449), [@cdoern](https://github.com/cdoern))
  - Added Regexp support to filtering volumes by name ([#14597](https://github.com/containers/podman/pull/14597), [@boaz0](https://github.com/boaz0))
+ - Added `podman pull -a` as a shorthand for `podman pull --all-tags` ([#14932](https://github.com/containers/podman/pull/14932), [@jakecorrenti](https://github.com/jakecorrenti))
  - Added support for `network ls --filter dangling=true/false` ([#14643](https://github.com/containers/podman/pull/14643), [@clobrano](https://github.com/clobrano))
  - Adds support for build which allows using build-cache with --squash-all using --layers
   - Adds support for new buildah feature --build-context where users can specify additional build context
@@ -94,6 +95,7 @@ The release notes have been generated for the commit range
  - Fixed a bug where Podman could print error messages when signals were forwarded to a container via `--sig-proxy` to a container as the container process exited. ([#14533](https://github.com/containers/podman/pull/14533), [@mheon](https://github.com/mheon))
  - Fixed a bug where Podman with docker-compose did not update the network MTU ([#14534](https://github.com/containers/podman/pull/14534), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where `podman -h` did not show the help output. ([#14619](https://github.com/containers/podman/pull/14619), [@Luap99](https://github.com/Luap99))
+ - Fixed a bug where `podman machine init` would fail if there is no `$HOME/.ssh` dir ([#14952](https://github.com/containers/podman/pull/14952), [@ashley-cui](https://github.com/ashley-cui))
  - Fixed a bug where `podman system df --format "{{ json . }}"` would not output the `Size` and `Reclaimable` fields (#14769) ([#14805](https://github.com/containers/podman/pull/14805), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where disabling healthchecks in a docker-compose.yml file was improperly handled (#14493) ([#14626](https://github.com/containers/podman/pull/14626), [@jakecorrenti](https://github.com/jakecorrenti))
  - Fixed a bug where podman machine fails to start with memory > 3072 on M1 ([#14563](https://github.com/containers/podman/pull/14563), [@ashley-cui](https://github.com/ashley-cui))
@@ -158,6 +160,7 @@ The release notes have been generated for the commit range
   "podman play kube" can still be used in the same manner as before as it is now an alias of
   "podman kube play". ([#14772](https://github.com/containers/podman/pull/14772), [@nicrowe00](https://github.com/nicrowe00))
  - This fix prevents the OCI runtime directory from remaining. It also prevents other bugs occurring. ([#14720](https://github.com/containers/podman/pull/14720), [@sstosh](https://github.com/sstosh))
+ - Unused, cached Podman machine VM images are now cleaned up automatically. Note that because we cache in a different dir, this will not clean up old images pulled before this change. ([#14900](https://github.com/containers/podman/pull/14900), [@ashley-cui](https://github.com/ashley-cui))
  - Update supported kube fields for configMap and deployment kind in play kube docs ([#14842](https://github.com/containers/podman/pull/14842), [@umohnani8](https://github.com/umohnani8))
  - User enables to remove unused networks using podman system prune command. ([#14556](https://github.com/containers/podman/pull/14556), [@sstosh](https://github.com/sstosh))
  - Users can now specify the --uts option when creating pods, specifying a pod wide uts mode for all containers. ([#14501](https://github.com/containers/podman/pull/14501), [@cdoern](https://github.com/cdoern))
