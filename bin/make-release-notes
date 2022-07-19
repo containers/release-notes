@@ -11,7 +11,7 @@ repo=${1?Missing REPO arg}
 shift
 
 # All subsequent args (at least one required) are branches
-if [[ -z "$2" ]]; then
+if [[ -z "$1" ]]; then
     echo "$ME: Missing DEST_BRANCH arg(s)" >&2
     exit 1
 fi
